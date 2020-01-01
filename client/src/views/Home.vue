@@ -75,6 +75,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+$hover-color: #222222;
 .main {
   position: relative;
   width: 100%;
@@ -119,11 +120,14 @@ a:visited {
   color: black;
 }
 a:hover {
-  color: rgb(32, 13, 197);
+  color: $hover-color;
 }
 
 @font-face {
   font-family: "BETTALIA";
   src: url("../assets/font/BETTALIA.ttf");
+}
+.icon:hover {
+  fill: $hover-color;
 }
 </style>
