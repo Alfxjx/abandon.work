@@ -1,0 +1,9 @@
+// 对api在本文件中进行管理，配置开发环境访问的mock数据，
+const ApiConfig = {
+  getHomeApi: {
+    development: "home.json",
+    production: "todo"
+  }
+};
+
+export default ApiConfig;

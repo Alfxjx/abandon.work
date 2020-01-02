@@ -6,6 +6,9 @@
       <span>施工中…</span>
       <a href="https://alfxjx.github.io/">看看之前的吧</a>
     </h3>
+    <div class="blog">
+      <router-link to="/blog">Blog</router-link>
+    </div>
     <div class="links">
       <a href="http://www.github.com/alfxjx" title="GitHub">
         <svg
