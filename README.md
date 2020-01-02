@@ -1,3 +1,9 @@
 # abandon.work
 
-new personal blog
+self intro
+blog
+  life and tech
+a net notebook
+bbs
+
+this is abandon.work
