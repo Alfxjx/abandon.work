@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { uniformRequest } from "../../http/api";
+import { uniformRequest, getJuejinLikeList } from "../../http/api";
 export default {
   data() {
     return {
@@ -19,12 +19,18 @@ export default {
   },
   mounted() {
     this.getData();
+    this.getJuejinData();
   },
 
   methods: {
     getData() {
       uniformRequest({ method: "get", url: "getHomeApi" }).then(res => {
         this.home = res;
+      });
+    },
+    getJuejinData() {
+      getJuejinLikeList(0).then(res => {
+        console.log(res);
       });
     }
   }
