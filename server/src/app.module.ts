@@ -17,7 +17,7 @@ import { BbsModule } from './bbs/bbs.module';
     BlogModule,
     BbsModule,
   ],
-  controllers: [AppController, BbsController],
-  providers: [AppService, BbsService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
