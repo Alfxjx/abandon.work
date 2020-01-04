@@ -8,6 +8,7 @@ import { BlogModule } from './blog/blog.module';
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/nest-blog', {
       useNewUrlParser: true,
+      useUnifiedTopology: true,
     }),
     BlogModule,
   ],
