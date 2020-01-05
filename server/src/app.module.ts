@@ -3,9 +3,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BlogModule } from './blog/blog.module';
-import { BbsController } from './bbs/bbs.controller';
-import { BbsService } from './bbs/bbs.service';
+// import { BbsController } from './bbs/bbs.controller';
+// import { BbsService } from './bbs/bbs.service';
 import { BbsModule } from './bbs/bbs.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { BbsModule } from './bbs/bbs.module';
     }),
     BlogModule,
     BbsModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
