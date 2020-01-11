@@ -37,4 +37,12 @@ if (process.env.NODE_ENV === "development") {
   };
 }
 
+if (process.env.NODE_ENV === "test") {
+  config["devServer"] = {
+    proxyTable: {
+      "/api": "http://localhost:3000"
+    }
+  };
+}
+ 
 module.exports = config;

@@ -2,6 +2,7 @@
 const ApiConfig = {
   getHomeApi: {
     development: "home.json",
+    test:"/api/blog/posts",
     production: "todo"
   }
 };
