@@ -4,6 +4,11 @@ const ApiConfig = {
     development: "home.json",
     test: "/api/blog/posts",
     production: "todo"
+  },
+  getTechApi: {
+    development: "tech.json",
+    test: "/api/blog/posts",
+    production: "todo"
   }
 };
 

@@ -1,40 +1,41 @@
 <template>
   <div>
+    <ul>
+      <li v-for="(item, index) in data" :key="index">
+        <div class="card-header">
+          <span>{{ item.author }}</span>
+          <span>{{ item.date_posted }}</span>
+        </div>
+        <div class="title">{{ item.title }}</div>
+        <div class="description">{{ item.description }}</div>
+      </li>
+    </ul>
     <div class="category">
       <span>{{ home }}</span>
-      <router-link to="/blog/tech">Work</router-link>
-      <router-link to="/blog/life">Life</router-link>
-      <router-view></router-view>
     </div>
   </div>
 </template>
 
 <script>
-import { uniformRequest, getJuejinLikeList } from "../../http/api";
 export default {
   data() {
     return {
-      home: ""
+      home: "",
+      data: {}
     };
   },
   mounted() {
     this.getData();
-    this.getJuejinData();
   },
 
   methods: {
     getData() {
-      console.log(process.env.NODE_ENV);
-      // axios.get("/api/blog/posts").then(res => {
-      //   this.home = res;
-      // });
-      uniformRequest({ method: "get", url: "getHomeApi" }).then(res => {
+      this.$get("getHomeApi").then(res => {
         this.home = res;
       });
-    },
-    getJuejinData() {
-      getJuejinLikeList(0).then(res => {
-        console.log(res);
+      // TODO server的api记得把列表和详情分开
+      this.$get("getTechApi").then(res => {
+        this.data = res.data;
       });
     }
   }

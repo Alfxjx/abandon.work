@@ -3,17 +3,19 @@
  */
 const fs = require("fs");
 const path = require("path");
-const basePath = path.join(__dirname, "mock");
+// TODO: put static file in public to solve hmr hot.update.json
+const public = path.join(__dirname, "public");
+const basePath = path.join(public, "mock");
 
 let config = {
-  publicPath: "./",
+  publicPath: "/",
   outputDir: "dist",
   assetsDir: "assets",
   productionSourceMap: false,
   // 它支持webPack-dev-server的所有选项
   devServer: {
     // host: "0.0.0.0",
-    port: 8081, // 端口号
+    port: 8080, // 端口号
     https: false, // https:{type:Boolean}
     open: false //配置自动启动浏览器
   }
@@ -29,6 +31,21 @@ if (process.env.NODE_ENV === "development") {
      */
     before(app) {
       app.get("*.json", (req, res) => {
+        res.json(
+          JSON.parse(fs.readFileSync(path.join(basePath, req.url), "utf8"))
+        );
+      });
+      app.post("*.json", (req, res) => {
+        res.json(
+          JSON.parse(fs.readFileSync(path.join(basePath, req.url), "utf8"))
+        );
+      });
+      app.put("*.json", (req, res) => {
+        res.json(
+          JSON.parse(fs.readFileSync(path.join(basePath, req.url), "utf8"))
+        );
+      });
+      app.delete("*.json", (req, res) => {
         res.json(
           JSON.parse(fs.readFileSync(path.join(basePath, req.url), "utf8"))
         );
