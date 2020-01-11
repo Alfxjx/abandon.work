@@ -11,6 +11,7 @@
 
 <script>
 import { uniformRequest } from "../../http/api";
+// import axios from "axios";
 export default {
   data() {
     return {
@@ -23,6 +24,10 @@ export default {
 
   methods: {
     getData() {
+      console.log(process.env.NODE_ENV);
+      // axios.get("/api/blog/posts").then(res => {
+      //   this.home = res;
+      // });
       uniformRequest({ method: "get", url: "getHomeApi" }).then(res => {
         this.home = res;
       });

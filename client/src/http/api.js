@@ -25,6 +25,8 @@ function parseUrl(link) {
     res = api.development;
   } else if (env === "production") {
     res = api.production;
+  } else if (env === "test") {
+    res = api.test;
   }
   return res;
 }
