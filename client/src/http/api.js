@@ -1,32 +1,34 @@
-import axios from "axios";
-import ApiConfig from "./config";
+import axios from 'axios';
+import ApiConfig from './config';
 
-export function get(url, data) {
-  return new Promise((resolve, reject) => {
-    axios
-      .get(parseUrl(url), {
-        params: data
-      })
-      .then(res => {
-        resolve(res.data);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+// id 是请求的链接可能需要用
+export function get(url, data, id) {
+	return new Promise((resolve, reject) => {
+		axios
+			.get(parseUrl(url, id), {
+				params: data,
+			})
+			.then(res => {
+				resolve(res.data);
+			})
+			.catch(err => {
+				reject(err);
+			});
+	});
 }
 
-export function post(url, data) {
-  return new Promise((resolve, reject) => {
-    axios
-      .post(parseUrl(url), data)
-      .then(res => {
-        resolve(res.data);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
+// id 是请求的链接可能需要用
+export function post(url, data, id) {
+	return new Promise((resolve, reject) => {
+		axios
+			.post(parseUrl(url, id), data)
+			.then(res => {
+				resolve(res.data);
+			})
+			.catch(err => {
+				reject(err);
+			});
+	});
 }
 
 // 获取掘金的点赞列表
@@ -45,16 +47,24 @@ export function post(url, data) {
 //   });
 // }
 
-function parseUrl(link) {
-  let env = process.env.NODE_ENV;
-  let api = ApiConfig[link];
-  let res = "";
-  if (env === "development") {
-    res = api.development;
-  } else if (env === "production") {
-    res = api.production;
-  } else if (env === "test") {
-    res = api.test;
-  }
-  return res;
+function parseUrl(link, id) {
+	let env = process.env.NODE_ENV;
+	let api = ApiConfig[link];
+	let res = '';
+	if (env === 'development') {
+		res = api.development;
+	} else if (env === 'production') {
+		if (id) {
+			res = api.production + '/' + id;
+		} else {
+			res = api.production;
+		}
+	} else if (env === 'test') {
+		if (id) {
+			res = api.production + '/' + id;
+		} else {
+			res = api.production;
+		}
+	}
+	return res;
 }

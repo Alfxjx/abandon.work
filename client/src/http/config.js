@@ -5,9 +5,15 @@ const ApiConfig = {
     test: "/api/blog/posts",
     production: "todo"
   },
-  getTechApi: {
-    development: "tech.json",
+  getBlogListApi: {
+    development: "getBlogList.json",
     test: "/api/blog/posts",
+    production: "todo"
+  },
+  getBlogPageApi: {
+    development: "getBlogPage.json",
+    // TODO 需要拼接一个id上去
+    test: "/api/blog/posts/",
     production: "todo"
   }
 };

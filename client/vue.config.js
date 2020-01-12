@@ -4,8 +4,8 @@
 const fs = require("fs");
 const path = require("path");
 // TODO: put static file in public to solve hmr hot.update.json
-const public = path.join(__dirname, "public");
-const basePath = path.join(public, "mock");
+const publicDIR = path.join(__dirname, "public");
+const basePath = path.join(publicDIR, "mock");
 
 let config = {
   publicPath: "/",

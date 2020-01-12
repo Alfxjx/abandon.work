@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="(item, index) in data" :key="index">
+      <li v-for="(item, index) in data" :key="index" @click="goToPage(item._id)">
         <div class="card-header">
           <span>{{ item.author }}</span>
           <span>{{ item.date_posted }}</span>
@@ -18,27 +18,28 @@
 
 <script>
 export default {
-  data() {
-    return {
-      home: "",
-      data: {}
-    };
-  },
-  mounted() {
-    this.getData();
-  },
+	data() {
+		return {
+			home: '',
+			data: {},
+		};
+	},
+	mounted() {
+		this.getData();
+	},
 
-  methods: {
-    getData() {
-      this.$get("getHomeApi").then(res => {
-        this.home = res;
-      });
-      // TODO server的api记得把列表和详情分开
-      this.$get("getTechApi").then(res => {
-        this.data = res.data;
-      });
-    }
-  }
+	methods: {
+		getData() {
+			// TODO server的api记得把列表和详情分开
+			this.$get('getBlogListApi').then(res => {
+				this.data = res.data;
+			});
+		},
+		goToPage(id) {
+      console.log(id);
+      this.$router.push(`/blog/${id}`)
+		},
+	},
 };
 </script>
 

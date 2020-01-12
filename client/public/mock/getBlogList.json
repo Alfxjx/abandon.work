@@ -5,15 +5,15 @@
     {
       "author": "xu",
       "title": "title change 22",
-      "description": "123",
-      "body": "1234567 ",
+      "description": "123desc",
+      "_id": "1234567 ",
       "date_posted": "1995-06-19"
     },
     {
       "author": "xu",
       "title": "a new post",
-      "description": "123",
-      "body": "1234567 ",
+      "description": "123desc",
+      "_id": "1234567 ",
       "date_posted": "1995-06-19"
     }
   ]
