@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "serve:test":"vue-cli-service serve --mode localTest",
+    "serve:test": "vue-cli-service serve --mode localTest",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix"
   },
@@ -26,7 +26,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
     "sass-loader": "^8.0.0",
     "vue-template-compiler": "^2.6.10"
