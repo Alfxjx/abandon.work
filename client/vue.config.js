@@ -3,15 +3,14 @@
  */
 const fs = require('fs');
 const path = require('path');
-// TODO: put static file in public to solve hmr hot.update.json
-const publicDIR = path.join(__dirname, 'public');
-const basePath = path.join(publicDIR, 'mock');
+// put static file out of public to solve hmr hot.update.json
+const basePath = path.join(__dirname, 'mock');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // 生产环境配置cdn
 let cdn = {
 	js: [
+    // TODO 动态版本号
 		'//cdn.bootcss.com/vue/2.6.10/vue.runtime.min.js',
 		'//cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js',
 		'//cdn.bootcss.com/vuex/3.1.2/vuex.min.js',
