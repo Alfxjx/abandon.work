@@ -7,6 +7,7 @@ const path = require('path');
 const publicDIR = path.join(__dirname, 'public');
 const basePath = path.join(publicDIR, 'mock');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // 生产环境配置cdn
 let cdn = {
@@ -29,9 +30,6 @@ let webpackConfig = {
 		port: 8080, // 端口号
 		https: false, // https:{type:Boolean}
 		open: false, //配置自动启动浏览器
-	},
-	configureWebpack: config => {
-		config['plugins'].push(new BundleAnalyzerPlugin());
 	},
 };
 
@@ -74,6 +72,7 @@ if (process.env.NODE_ENV === 'test') {
 	};
 }
 
+// 配置生产环境CDN
 if (process.env.NODE_ENV === 'production') {
 	webpackConfig['chainWebpack'] = config => {
 		config.plugin('html').tap(args => {
@@ -87,7 +86,8 @@ if (process.env.NODE_ENV === 'production') {
 			vuex: 'Vuex',
 			'vue-router': 'VueRouter',
 			axios: 'axios',
-    };
+		};
+		config['plugins'].push(new BundleAnalyzerPlugin());
 	};
 }
 

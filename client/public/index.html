@@ -20,9 +20,9 @@
 			>
 		</noscript>
 		<div id="app"></div>
-		<% htmlWebpackPlugin.options.cdn.js.forEach(function(item){ if(item){ %>
+		<% if(process.env.NODE_ENV==='production'){htmlWebpackPlugin.options.cdn.js.forEach(function(item){ if(item){ %>
 		<script type="text/javascript" src="<%= item %>"></script>
-		<% }}) %>
+		<% }})} %>
 		<!-- built files will be auto injected -->
 	</body>
 </html>
