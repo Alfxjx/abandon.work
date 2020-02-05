@@ -69,13 +69,7 @@
 
 <script>
 export default {
-	mounted() {
-		this.$loading.show();
-		let st = setTimeout(() => {
-      clearTimeout(st);
-      this.$loading.hide();
-		}, 2000);
-	},
+	mounted() {},
 };
 </script>
 
