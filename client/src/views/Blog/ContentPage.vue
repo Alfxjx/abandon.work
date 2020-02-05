@@ -1,6 +1,8 @@
 <template>
 	<div class="content-wrapper">
+		<blog-header></blog-header>
 		<div>
+			<div>{{ content.category }}</div>
 			<div>{{ content.title }}</div>
 			<div>
 				<span>{{ content.author }}</span>
@@ -12,6 +14,7 @@
 </template>
 
 <script>
+import BlogHeader from './BlogHeader.vue';
 export default {
 	data() {
 		return {
@@ -31,7 +34,9 @@ export default {
 		},
 	},
 	watch: {},
-	components: {},
+	components: {
+		'blog-header': BlogHeader,
+	},
 };
 </script>
 

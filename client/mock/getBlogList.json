@@ -7,6 +7,7 @@
       "title": "title change 22",
       "description": "123desc",
       "_id": "1234567 ",
+      "category":"tech",
       "date_posted": "1995-06-19"
     },
     {
@@ -14,6 +15,7 @@
       "title": "a new post",
       "description": "123desc",
       "_id": "1234567 ",
+      "category":"tech",
       "date_posted": "1995-06-19"
     }
   ]
