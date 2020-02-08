@@ -22,14 +22,20 @@ export class BlogController {
   @Get('')
   async getPosts(@Res() res) {
     const posts = await this.blogService.getPosts();
-    return res.status(HttpStatus.OK).json(posts);
+    return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
+      data:posts
+    });
   }
 
   @Get('/:postID')
   async getPost(@Res() res, @Param('postID', new ValidateObjectId()) postID) {
     const post = await this.blogService.getPost(postID);
     if (!post) throw new NotFoundException('Post does not exist!');
-    return res.status(HttpStatus.OK).json(post);
+    return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
+      data:post
+    });
   }
 
   @Post('/')
