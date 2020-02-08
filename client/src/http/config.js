@@ -2,19 +2,15 @@
 const ApiConfig = {
   getHomeApi: {
     development: "home.json",
-    test: "/api/blog/posts",
-    production: "todo"
+    production: "/api/blog/posts",
   },
   getBlogListApi: {
     development: "getBlogList.json",
-    test: "/api/blog/posts",
-    production: "todo"
+    production: "/api/blog"
   },
   getBlogPageApi: {
     development: "getBlogPage.json",
-    // TODO 需要拼接一个id上去
-    test: "/api/blog/posts/",
-    production: "todo"
+    production: "/api/blog/"
   }
 };
 
