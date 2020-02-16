@@ -1,6 +1,6 @@
 <template>
 	<div>
-    <blog-header></blog-header>
+		<blog-header />
 		<ul>
 			<li v-for="(item, index) in data" :key="index" @click="goToPage(item._id)">
 				<div class="card-header">
@@ -21,8 +21,8 @@
 <script>
 import BlogHeader from './BlogHeader.vue';
 export default {
-  // style from 
-  // TODO https://www.darmau.com/
+	// style from
+	// TODO https://www.darmau.com/
 	data() {
 		return {
 			home: '',

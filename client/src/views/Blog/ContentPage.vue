@@ -1,6 +1,6 @@
 <template>
 	<div class="content-wrapper">
-		<blog-header></blog-header>
+		<blog-header />
 		<div>
 			<div>{{ content.category }}</div>
 			<div>{{ content.title }}</div>

@@ -1,14 +1,15 @@
 <template>
 	<div class="main">
 		<div class="bg-image" />
-		<h1 class="title">Come to abandon.work</h1>
-		<h3>
-			<span>施工中…</span>
-			<a href="https://alfxjx.github.io/">看看之前的吧</a>
-		</h3>
-		<div class="blog">
-			<router-link to="/blog">Blog</router-link>
+		<div class="header">
+			<span class="header-title">Alfxjx</span>
+			<a class="header-title blog" @click="toBlog">Blog</a>
 		</div>
+		<p class="title">Abandon.work</p>
+		<h3 class="hint">
+			<span>施工中…</span>
+			<a href="https://alfxjx.github.io/">技术博客</a>
+		</h3>
 		<div class="links">
 			<a href="http://www.github.com/alfxjx" title="GitHub">
 				<svg
@@ -64,17 +65,31 @@
 				</svg>
 			</a>
 		</div>
+		<footer>
+			<a href="#">备案号000</a>
+		</footer>
 	</div>
 </template>
 
 <script>
 export default {
+	data() {
+		return {};
+	},
 	mounted() {},
+	methods: {
+		toBlog() {
+			this.$router.push('/blog');
+		},
+	},
 };
 </script>
 
 <style lang="scss" scoped>
-$hover-color: #222222;
+$hover-color: #0f4c81;
+$font-color: #f1efe0;
+$hover-bg: #fae600;
+$footer-height: 30px;
 .main {
 	position: relative;
 	width: 100%;
@@ -83,10 +98,54 @@ $hover-color: #222222;
 	flex-direction: column;
 	justify-content: top;
 	align-items: center;
+	.header {
+		width: 100%;
+		height: 60px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		.header-title {
+			font-family: 'BETTALIA';
+			height: 40px;
+			line-height: 40px;
+			color: $font-color;
+			font-size: 22px;
+			font-weight: 600;
+			margin: 10px 25px;
+		}
+		.blog {
+			width: 75px;
+			text-align: center;
+			border-radius: 20px;
+			background: #222;
+			&:hover {
+				cursor: pointer;
+				color: $hover-color;
+				background: $hover-bg;
+			}
+		}
+	}
+	footer {
+		position: absolute;
+		left: 0;
+		bottom: 10px;
+		width: 100%;
+		height: $footer-height;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 }
 .title {
 	margin-bottom: 10px;
-	font-family: 'BETTALIA';
+	padding-top: 20px;
+	font-weight: 700;
+	font-family: Haettenschweiler, sans-serif;
+	font-size: 64px;
+	color: $font-color;
+}
+.hint {
+	color: $font-color;
 }
 .bg-image {
 	position: fixed;
@@ -97,8 +156,8 @@ $hover-color: #222222;
 	min-width: 1000px;
 	z-index: -10;
 	zoom: 1;
-	background-image: url('../assets/mountain.jpg');
-	background-color: #fff;
+	background-image: url('../assets/111.jpg');
+	background-color: #777;
 	background-repeat: no-repeat;
 	background-size: cover;
 	-webkit-background-size: cover;
@@ -116,7 +175,7 @@ a {
 	text-decoration: none;
 }
 a:visited {
-	color: black;
+	color: $font-color;
 }
 a:hover {
 	color: $hover-color;
@@ -128,5 +187,8 @@ a:hover {
 }
 .icon:hover {
 	fill: $hover-color;
+}
+.icon {
+	fill: $font-color;
 }
 </style>
