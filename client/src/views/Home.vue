@@ -138,7 +138,7 @@ $footer-height: 30px;
 }
 .title {
 	margin-bottom: 10px;
-	padding-top: 20px;
+	padding-top: 80px;
 	font-weight: 700;
 	font-family: Haettenschweiler, sans-serif;
 	font-size: 64px;
@@ -173,6 +173,7 @@ $footer-height: 30px;
 }
 a {
 	text-decoration: none;
+  color: $font-color;
 }
 a:visited {
 	color: $font-color;
