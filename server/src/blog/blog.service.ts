@@ -9,12 +9,16 @@ export class BlogService {
   constructor(@InjectModel('Post') private readonly postModel: Model<Post>) {}
 
   async getPosts(): Promise<Post[]> {
-    const posts = await this.postModel.find().exec();
+    // TODO find的第二个参数是filter是一个对象,
+    const posts = await this.postModel.find({}, { body: 0 });
     return posts;
   }
 
   async getPost(postID): Promise<Post> {
-    const post = await this.postModel.findById(postID).exec();
+    const post = await this.postModel
+    // 不显示description了
+      .findById(postID, { description: 0 })
+      .exec();
     return post;
   }
 

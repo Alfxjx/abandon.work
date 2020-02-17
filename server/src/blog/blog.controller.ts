@@ -22,6 +22,7 @@ export class BlogController {
   @Get('')
   async getPosts(@Res() res) {
     const posts = await this.blogService.getPosts();
+    if(!posts) throw new NotFoundException('Posts find failed!');
     return res.status(HttpStatus.OK).json({
       status:HttpStatus.OK,
       data:posts
@@ -41,7 +42,9 @@ export class BlogController {
   @Post('/')
   async addPost(@Res() res, @Body() createPostDTO: CreatePostDTO) {
     const newPost = await this.blogService.addPost(createPostDTO);
+    if(!newPost) throw new NotFoundException('创建失败');
     return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
       message: 'Post has been submitted successfully!',
       post: newPost,
     });
@@ -56,6 +59,7 @@ export class BlogController {
     const editedPost = await this.blogService.editPost(postID, createPostDTO);
     if (!editedPost) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
       message: 'Post has been successfully updated',
       post: editedPost,
     });
@@ -69,6 +73,7 @@ export class BlogController {
     const deletedPost = await this.blogService.deletePost(postID);
     if (!deletedPost) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
       message: 'Post has been deleted!',
       post: deletedPost,
     });
