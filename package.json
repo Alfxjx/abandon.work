@@ -1,0 +1,29 @@
+{
+  "name": "abandon.work",
+  "version": "1.0.0",
+  "description": "self intro blog   life and tech a net notebook bbs",
+  "main": "none",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client":"cd client && npm run serve",
+    "server:dev":"cd server && npm run dev",
+    "docs:dev":"cd docs && npm run docs:dev",
+    "local":"mongod && npm run server:dev && npm run client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alfxjx/abandon.work.git"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "xujx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Alfxjx/abandon.work/issues"
+  },
+  "homepage": "https://github.com/Alfxjx/abandon.work#readme"
+}

@@ -81,13 +81,7 @@ function parseUrl(link, id) {
 	let res = '';
 	if (env === 'development') {
 		res = api.development;
-	} else if (env === 'production') {
-		if (id) {
-			res = api.production + '/' + id;
-		} else {
-			res = api.production;
-		}
-	} else if (env === 'test') {
+	} else {
 		if (id) {
 			res = api.production + '/' + id;
 		} else {
