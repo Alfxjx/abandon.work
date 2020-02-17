@@ -2,7 +2,10 @@
 	<div class="main">
 		<div class="bg-image" />
 		<div class="header">
-			<span class="header-title">Alfxjx</span>
+			<!-- <span class="header-title">Alfxjx</span> -->
+      <span class="header-title">
+        <router-link to="/test">Alfxjx</router-link>
+      </span>
 			<a class="header-title blog" @click="toBlog">Blog</a>
 		</div>
 		<p class="title">Abandon.work</p>
@@ -66,7 +69,7 @@
 			</a>
 		</div>
 		<footer>
-			<a href="#">备案号000</a>
+			<a :href="bLink">津ICP备18010186号-2</a>
 		</footer>
 	</div>
 </template>
@@ -74,7 +77,9 @@
 <script>
 export default {
 	data() {
-		return {};
+		return {
+      bLink:'http://beian.miit.gov.cn/state/outPortal/loginPortal.action;jsessionid=DrxR3OxDGC8VTtP-_wvcUeo-TYg1YOL3qZJsAAFdyFhTZHrpC436!-1430904473'
+    };
 	},
 	mounted() {},
 	methods: {
@@ -156,7 +161,7 @@ $footer-height: 30px;
 	min-width: 1000px;
 	z-index: -10;
 	zoom: 1;
-	background-image: url('../assets/111.jpg');
+	background-image: url('http://image-abandon-work.test.upcdn.net/assets/img/111.71d12109.jpg');
 	background-color: #777;
 	background-repeat: no-repeat;
 	background-size: cover;
