@@ -4,4 +4,6 @@ export class CreatePostDTO {
   readonly body: string;
   readonly author: string;
   readonly date_posted: string;
+  readonly picture: string;
+  readonly promote: boolean;
 }
