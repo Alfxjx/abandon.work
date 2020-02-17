@@ -3,10 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { BlogModule } from './blog/blog.module';
-// import { BbsController } from './bbs/bbs.controller';
-// import { BbsService } from './bbs/bbs.service';
 import { BbsModule } from './bbs/bbs.module';
 import { UserModule } from './user/user.module';
+import { PictureModule } from './picture/picture.module';
+// import { ServeStaticModule } from '@nestjs/serve-static';
+// import { join } from 'path';
 
 @Module({
   imports: [
@@ -15,9 +16,13 @@ import { UserModule } from './user/user.module';
       useUnifiedTopology: true,
       useFindAndModify: false,
     }),
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', 'public'),
+    // }),
     BlogModule,
     BbsModule,
     UserModule,
+    PictureModule,
   ],
   controllers: [AppController],
   providers: [AppService],

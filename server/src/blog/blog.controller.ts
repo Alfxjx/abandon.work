@@ -46,7 +46,7 @@ export class BlogController {
     return res.status(HttpStatus.OK).json({
       status:HttpStatus.OK,
       message: 'Post has been submitted successfully!',
-      post: newPost,
+      data: newPost,
     });
   }
 
