@@ -91,9 +91,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$hover-color: #0f4c81;
-$font-color: #f1efe0;
-$hover-bg: #fae600;
+@import '../var.scss';
 $footer-height: 30px;
 .main {
 	position: relative;
@@ -161,7 +159,7 @@ $footer-height: 30px;
 	min-width: 1000px;
 	z-index: -10;
 	zoom: 1;
-	background-image: url('http://image-abandon-work.test.upcdn.net/assets/img/111.71d12109.jpg');
+	background-image: url('../assets/111.jpg');
 	background-color: #777;
 	background-repeat: no-repeat;
 	background-size: cover;
