@@ -27,7 +27,8 @@ export default {
 	computed: {},
 	methods: {
 		getContentPage() {
-			let id = this.$route.params.id;
+      let id = this.$route.params.id;
+      // TODO 
 			this.$get('getBlogPageApi', null, id).then(res => {
 				this.content = res.data;
 			});
