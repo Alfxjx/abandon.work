@@ -3,9 +3,9 @@
 		<div class="bg-image" />
 		<div class="header">
 			<!-- <span class="header-title">Alfxjx</span> -->
-      <span class="header-title">
-        <router-link to="/test">Alfxjx</router-link>
-      </span>
+			<span class="header-title">
+				<router-link to="/test">Alfxjx</router-link>
+			</span>
 			<a class="header-title blog" @click="toBlog">Blog</a>
 		</div>
 		<p class="title">Abandon.work</p>
@@ -78,8 +78,9 @@
 export default {
 	data() {
 		return {
-      bLink:'http://beian.miit.gov.cn/state/outPortal/loginPortal.action;jsessionid=DrxR3OxDGC8VTtP-_wvcUeo-TYg1YOL3qZJsAAFdyFhTZHrpC436!-1430904473'
-    };
+			bLink:
+				'http://beian.miit.gov.cn/state/outPortal/loginPortal.action;jsessionid=DrxR3OxDGC8VTtP-_wvcUeo-TYg1YOL3qZJsAAFdyFhTZHrpC436!-1430904473',
+		};
 	},
 	mounted() {},
 	methods: {
@@ -141,10 +142,10 @@ $footer-height: 30px;
 }
 .title {
 	margin-bottom: 10px;
-	padding-top: 80px;
+	padding-top: 2em;
 	font-weight: 700;
-	font-family: Haettenschweiler, sans-serif;
-	font-size: 64px;
+	font-family: 'BETTALIA', sans-serif;
+	font-size: 3.5em;
 	color: $font-color;
 }
 .hint {
@@ -156,16 +157,17 @@ $footer-height: 30px;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	min-width: 1000px;
 	z-index: -10;
-	zoom: 1;
-	background-image: url('../assets/111.jpg');
-	background-color: #777;
-	background-repeat: no-repeat;
-	background-size: cover;
+	// zoom: 1;
+	// background-image: url('../assets/111.jpg');
+	// background-color: #777;
+	// background-repeat: no-repeat;
+	// background-size: 100% 100%;
+	background: url('../assets/111.jpg') no-repeat center center fixed;
 	-webkit-background-size: cover;
+	-moz-background-size: cover;
 	-o-background-size: cover;
-	background-position: center 20%;
+	background-size: cover;
 }
 .links {
 	margin-top: 10px;
@@ -176,7 +178,7 @@ $footer-height: 30px;
 }
 a {
 	text-decoration: none;
-  color: $font-color;
+	color: $font-color;
 }
 a:visited {
 	color: $font-color;
