@@ -1,6 +1,6 @@
-export class JuejinDTO {
+export class CreateJuejinDTO {
   readonly title: string;
   readonly link: string;
-  readonly likeCounts: number;
+  readonly likeCount: number;
   readonly tags: string[];
 }

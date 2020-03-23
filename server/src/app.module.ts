@@ -8,8 +8,7 @@ import { UserModule } from './user/user.module';
 import { PictureModule } from './picture/picture.module';
 // import { ServeStaticModule } from '@nestjs/serve-static';
 // import { join } from 'path';
-import { SpiderService } from './spider/spider.service';
-import { SpiderModule } from './spider/spider.module';
+import { JuheModule } from './juhe/juhe.module';
 
 @Module({
   imports: [
@@ -25,9 +24,9 @@ import { SpiderModule } from './spider/spider.module';
     BbsModule,
     UserModule,
     PictureModule,
-    SpiderModule,
+    JuheModule,
   ],
   controllers: [AppController],
-  providers: [AppService, SpiderService],
+  providers: [AppService],
 })
 export class AppModule {}
