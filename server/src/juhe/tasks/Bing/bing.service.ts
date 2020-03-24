@@ -35,8 +35,9 @@ export class BingService {
     let date = new Date();
     this.logger.log('get bing 壁纸!');
     return this.saveLinks({
-      date:date.toISOString(),
-      link:linkUrl
+      date: date.toISOString(),
+      link: linkUrl,
+      likes: 0,
     });
   }
 
@@ -49,5 +50,36 @@ export class BingService {
     // await this.bingModel.remove();
     const data = await this.bingModel.find();
     return data;
+  }
+
+  // TODO 改成enum
+  async getBingLinkSorted(sort: number): Promise<Bing> {
+    const data = await this.bingModel
+      .find({})
+      .sort({ likes: sort })
+      .exec();
+    return data;
+  }
+
+  async findBingById(id: string): Promise<Bing> {
+    const res = await this.bingModel.findById(id);
+    return res;
+  }
+
+  async likeOneBing(id: string) {
+    let { likes } = await this.findBingById(id);
+    const res = await this.bingModel.findByIdAndUpdate(
+      id,
+      {
+        likes: ++likes,
+      },
+      { new: true },
+    );
+    return res;
+  }
+
+  async deleteBing(postID: string): Promise<any> {
+    const deletedPost = await this.bingModel.findByIdAndRemove(postID);
+    return deletedPost;
   }
 }
