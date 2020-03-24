@@ -1,6 +1,11 @@
 <template>
 	<div class="main">
-		<div class="bg-image" />
+		<div
+			class="bg-image"
+			v-if="bingList[0] !== undefined"
+			:style="{ backgroundImage: `url('${bingList[0].link}')` }"
+		/>
+		<!-- <div class="bg-image" /> -->
 		<div class="header">
 			<!-- <span class="header-title">Alfxjx</span> -->
 			<span class="header-title">
@@ -80,12 +85,20 @@ export default {
 		return {
 			bLink:
 				'http://beian.miit.gov.cn/state/outPortal/loginPortal.action;jsessionid=DrxR3OxDGC8VTtP-_wvcUeo-TYg1YOL3qZJsAAFdyFhTZHrpC436!-1430904473',
+			bingList: [],
 		};
 	},
-	mounted() {},
+	mounted() {
+		this._getBingList();
+	},
 	methods: {
 		toBlog() {
 			this.$router.push('/blog');
+		},
+		_getBingList() {
+			this.$get('getBingBGListApi').then(res => {
+				this.bingList = res.data;
+			});
 		},
 	},
 };
