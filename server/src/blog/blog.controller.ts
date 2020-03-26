@@ -9,6 +9,7 @@ import {
   Body,
   Query,
   Put,
+  Patch,
   Delete,
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
@@ -50,7 +51,7 @@ export class BlogController {
     });
   }
 
-  @Put('/edit')
+  @Patch('/edit')
   async editPost(
     @Res() res,
     @Query('postID', new ValidateObjectId()) postID,
