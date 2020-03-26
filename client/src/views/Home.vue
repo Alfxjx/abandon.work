@@ -5,7 +5,7 @@
 			v-if="bingList[0] !== undefined"
 			:style="{ backgroundImage: `url('${bingList[0].link}')` }"
 		/>
-		<!-- <div class="bg-image" /> -->
+		<div v-else class="bg-image" />
 		<div class="header">
 			<!-- <span class="header-title">Alfxjx</span> -->
 			<span class="header-title">
