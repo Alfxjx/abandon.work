@@ -73,3 +73,12 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
   Nest is [MIT licensed](LICENSE).
+
+## 常用命令
+
+新建一个controller/service
+
+```
+nest g controller cats
+nest g service cats
+```
