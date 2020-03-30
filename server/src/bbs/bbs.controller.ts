@@ -20,13 +20,18 @@ export class BbsController {
   @Get('/list')
   async getBBSList(@Res() res) {
     const bbs = await this.bbsService.getBBSList();
-    return res.status(HttpStatus.OK).json(bbs);
+    return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
+      message: 'bbs list get successfully!',
+      data: bbs,
+    });
   }
 
   @Post('/new')
   async CreateNewBBS(@Res() res, @Body() CreateBBSDTO: CreateBBSDTO) {
     const newBBS = await this.bbsService.createNewBBS(CreateBBSDTO);
     return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
       message: 'create bbs successfully',
       post: newBBS,
     });
@@ -39,6 +44,7 @@ export class BbsController {
       throw new NotFoundException('BBS does not exist!');
     }
     return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
       message: 'BBS has been deleted!',
       post: delBBS,
     });

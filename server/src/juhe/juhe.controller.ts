@@ -64,11 +64,11 @@ export class JuheController {
   }
 
   @Post('bing')
-  async createBing(@Res() res, @Body() createBing:CreateBingDTO){
+  async createBing(@Res() res, @Body() createBing: CreateBingDTO) {
     const bingPost = await this.bingService.createBing(createBing);
-    if(!bingPost) throw new NotFoundException('创建失败');
+    if (!bingPost) throw new NotFoundException('创建失败');
     return res.status(HttpStatus.OK).json({
-      status:HttpStatus.OK,
+      status: HttpStatus.OK,
       message: 'Bing has been submitted successfully!',
       data: bingPost,
     });
@@ -93,6 +93,16 @@ export class JuheController {
       status: HttpStatus.OK,
       message: 'Bing bg has been deleted!',
       post: deletedPost,
+    });
+  }
+
+  @Delete('bing/all')
+  async deleteAllBing(@Res() res) {
+    const del = await this.bingService.deleteBingAll();
+    if (!del) throw new NotFoundException('Bing does not exist!');
+    return res.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      message: 'All wallpapers has been deleted!',
     });
   }
 }

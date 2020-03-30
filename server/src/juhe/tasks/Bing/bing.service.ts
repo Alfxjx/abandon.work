@@ -87,4 +87,9 @@ export class BingService {
     const deletedPost = await this.bingModel.findByIdAndRemove(postID);
     return deletedPost;
   }
+
+  async deleteBingAll(): Promise<Bing> {
+    const del = await this.bingModel.remove();
+    return del;
+  }
 }
