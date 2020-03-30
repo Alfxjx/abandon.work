@@ -13,6 +13,7 @@ import {
 import { JuejinService } from './tasks/Juejin/juejin.service';
 import { BingService } from './tasks/Bing/bing.service';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
+import { CreateBingDTO } from './dto';
 
 @Controller('juhe')
 export class JuheController {
@@ -59,6 +60,17 @@ export class JuheController {
     return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
       data: bingRes,
+    });
+  }
+
+  @Post('bing')
+  async createBing(@Res() res, @Body() createBing:CreateBingDTO){
+    const bingPost = await this.bingService.createBing(createBing);
+    if(!bingPost) throw new NotFoundException('创建失败');
+    return res.status(HttpStatus.OK).json({
+      status:HttpStatus.OK,
+      message: 'Bing has been submitted successfully!',
+      data: bingPost,
     });
   }
 

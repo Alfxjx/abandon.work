@@ -11,7 +11,7 @@ export class BingService {
   constructor(@InjectModel('Bing') private readonly bingModel: Model<Bing>) {}
   private readonly logger = new Logger(BingService.name);
 
-  @Cron('0 30 7 * * 3')
+  @Cron('0 0 12 * * *')
   // @Timeout(1000)
   async getBingLinks(): Promise<Bing> {
     this.logger.log('get bing 壁纸...');
@@ -76,6 +76,11 @@ export class BingService {
       { new: true },
     );
     return res;
+  }
+
+  async createBing(bingDTO: CreateBingDTO): Promise<Bing> {
+    const newBing = await this.bingModel(bingDTO);
+    return newBing.save();
   }
 
   async deleteBing(postID: string): Promise<any> {
