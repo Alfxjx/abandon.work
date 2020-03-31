@@ -13,10 +13,10 @@
 			</span>
 			<a class="header-title blog" @click="toBlog">Blog</a>
 		</div>
-		<p class="title">Abandon.work</p>
+		<p class="title">Abandon<a href="https://alfxjx.github.io/">.</a>work</p>
 		<h3 class="hint">
-			<span>施工中…</span>
-			<a href="https://alfxjx.github.io/">技术博客</a>
+			<span>still under construction…</span>
+			<!-- <a href="https://alfxjx.github.io/">技术博客</a> -->
 		</h3>
 		<div class="links">
 			<a href="http://www.github.com/alfxjx" title="GitHub">
@@ -158,11 +158,12 @@ $footer-height: 30px;
 	padding-top: 2em;
 	font-weight: 700;
 	font-family: 'BETTALIA', sans-serif;
-	font-size: 3.5em;
+	font-size: 4em;
 	color: $font-color;
 }
 .hint {
-	color: $font-color;
+  color: $font-color;
+	font-family: sans-serif;
 }
 .bg-image {
 	position: fixed;
