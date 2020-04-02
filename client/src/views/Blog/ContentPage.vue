@@ -1,7 +1,7 @@
 <template>
 	<div class="content-wrapper">
 		<blog-header />
-		<div>
+		<div class="content-page">
 			<div>{{ content.category }}</div>
 			<div>{{ content.title }}</div>
 			<div>
@@ -43,5 +43,8 @@ export default {
 
 <style scoped lang="scss">
 .content-wrapper {
+  .content-page{
+    margin-top: 80px;
+  }
 }
 </style>

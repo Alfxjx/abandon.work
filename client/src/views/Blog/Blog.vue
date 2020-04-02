@@ -19,7 +19,7 @@
 						<span>{{ item.date_posted }}</span>
 					</div>
 					<div class="description">{{ item.description }}</div>
-          <div class="pormote" v-show="item.promote==true">推荐</div>
+					<div class="pormote" v-show="item.promote === true">推荐</div>
 					<div class="category" @click.stop="showCate()">cate {{ item.category }}</div>
 				</article>
 			</div>
@@ -68,6 +68,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../var.scss';
+$border: 1rem;
 .blog-main {
 	width: 100vw;
 	height: 100vh;
@@ -75,28 +76,31 @@ export default {
 	flex-direction: column;
 	justify-content: flex-start;
 	.blog-list {
+		margin-top: 60px;
 		display: flex;
 		flex-wrap: wrap;
 		.blog-wrapper {
-      color: $incard-color;
-      position: relative;
-			width: 18em;
-			height: 14em;
-			border: 1px solid #777;
-			border-radius: 10px;
+			color: $incard-color;
+			position: relative;
+			width: 18rem;
+			height: 12rem;
+			// border: 1px solid #777;
+			border-radius: $border;
 			margin: 10px;
 			display: flex;
 			flex-direction: column;
 			align-items: flex-start;
 			padding: 20px;
+			background-size: 100% 100%;
 			&::before {
-        position: absolute;
-        top: 0;
-        left: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
 				width: 100%;
 				height: 100%;
 				content: '';
 				opacity: 0.4;
+				border-radius: $border;
 				background-image: linear-gradient(234deg, #394245, #000);
 			}
 			.card-wrapper {
@@ -125,7 +129,7 @@ export default {
 				.category {
 					position: absolute;
 					left: 0;
-					bottom: 5px;
+					bottom: -8px;
 					height: 20px;
 					font-size: 14px;
 					font-weight: 500;
