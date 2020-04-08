@@ -13,7 +13,7 @@ export class JuejinService {
   private readonly logger = new Logger(JuejinService.name);
 
   // 周一到周日早上8点半
-  @Cron('0 30 8 * * *')
+  @Cron('0 00 22 * * *')
   // @Cron('0 12 16 * * 1-5')
   // @Timeout(5000)
   async dailyGetJuejinLikeList() {
