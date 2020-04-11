@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:test": "vue-cli-service serve --mode localTest",
-    "serve:huidu": "vue-cli-service serve --mode huidu",
+    "huidu": "vue-cli-service serve --mode huidu",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint --fix",
     "report": "npm run build --report"
