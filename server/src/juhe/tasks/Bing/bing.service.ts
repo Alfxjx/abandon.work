@@ -11,7 +11,7 @@ export class BingService {
   constructor(@InjectModel('Bing') private readonly bingModel: Model<Bing>) {}
   private readonly logger = new Logger(BingService.name);
 
-  @Cron('0 05 22 * * *')
+  @Cron('00 00 14 * * *')
   // @Timeout(1000)
   async getBingLinks(): Promise<Bing> {
     this.logger.log('get bing 壁纸...');
@@ -19,6 +19,7 @@ export class BingService {
     let linkUrl: string = await pptr
       .launch({
         headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox'],
       })
       .then(async browser => {
         const page = await browser.newPage();
