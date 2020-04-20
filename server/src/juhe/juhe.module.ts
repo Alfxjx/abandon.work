@@ -20,6 +20,6 @@ import { MongooseModule } from '@nestjs/mongoose';
     BingModule,
   ],
   controllers: [JuheController],
-  providers: [JuheService],
+  providers: [JuheService, JuejinService, BingService],
 })
 export class JuheModule {}
