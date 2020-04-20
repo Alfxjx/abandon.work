@@ -1,6 +1,6 @@
 <template>
 	<div class="blog-main">
-		<blog-header />
+		<!-- <blog-header /> -->
 		<div class="blog-list">
 			<div
 				class="blog-wrapper"
@@ -31,14 +31,14 @@
 </template>
 
 <script>
-import BlogHeader from './BlogHeader.vue';
+// import BlogHeader from './BlogHeader.vue';
 export default {
 	// style from
 	// TODO https://www.darmau.com/
 	data() {
 		return {
 			home: '',
-			data: {},
+			data: {}
 		};
 	},
 	mounted() {
@@ -54,15 +54,15 @@ export default {
 		},
 		goToPage(id) {
 			// console.log(id);
-			this.$router.push(`/blog/${id}`);
+			this.$router.push(`/${id}`);
 		},
 		showCate() {
 			console.log('go category');
-		},
+		}
 	},
-	components: {
-		'blog-header': BlogHeader,
-	},
+	// components: {
+	// 	'blog-header': BlogHeader
+	// }
 };
 </script>
 
@@ -70,17 +70,17 @@ export default {
 @import '../../var.scss';
 $border: 1rem;
 .blog-main {
-	width: 100vw;
-	height: 100vh;
+	width: 100%;
+	// height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	.blog-list {
-		margin-top: 60px;
+		padding-top: 20px;
 		display: flex;
 		flex-wrap: wrap;
 		.blog-wrapper {
-			color: $incard-color;
+			color: $white;
 			position: relative;
 			width: 18rem;
 			height: 12rem;

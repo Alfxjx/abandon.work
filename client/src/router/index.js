@@ -1,18 +1,16 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '../views/Home/Home.vue';
 import Test from '../views/test.vue';
 // import Blog from "../views/Blog/Blog.vue";
 // import ContentPage from '../views/Blog/ContentPage.vue';
 // import Tech from "../views/Blog/Tech.vue";
-// 路由懒加载 博客分块
-const Blog = () => import(/* webpackChunkName: "group-blog" */ '../views/Blog/Blog.vue');
 const ContentPage = () => import(/* webpackChunkName: "group-blog" */ '../views/Blog/ContentPage.vue');
 Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/test',
+		path: '/about',
 		name: 'test',
 		component: Test,
 	},
@@ -22,11 +20,7 @@ const routes = [
 		component: Home,
 	},
 	{
-		path: '/blog',
-		component: Blog,
-	},
-	{
-		path: '/blog/:id',
+		path: '/:id',
 		component: ContentPage,
 	},
 ];
