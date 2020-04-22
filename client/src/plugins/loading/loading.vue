@@ -38,12 +38,19 @@
 				</path>
 			</svg>
 		</div>
+		<div v-if="hint" class="hint">{{ hint }}</div>
 	</div>
 </template>
 
 <script>
 export default {
 	name: 'loading',
+	props: {
+		hint: {
+			type: String,
+			default: '',
+		},
+	},
 };
 </script>
 
@@ -55,6 +62,7 @@ $color: #222;
 	left: 0;
 	top: 0;
 	display: flex;
+	flex-direction: column;
 	width: 100%;
 	height: 100vh;
 	background: #ffffff;

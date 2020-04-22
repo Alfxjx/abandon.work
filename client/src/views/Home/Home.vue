@@ -18,7 +18,7 @@
 		</div>
 		<footer>
 			<LinkPart />
-			<a :href="bLink">津ICP备18010186号-2</a>
+			<a href="http://beian.miit.gov.cn" target="_blank">ICP备18010186号-2</a>
 		</footer>
 	</div>
 </template>
@@ -30,11 +30,9 @@ import Blog from '../Blog/Blog.vue';
 export default {
 	data() {
 		return {
-			bLink:
-				'http://beian.miit.gov.cn/state/outPortal/loginPortal.action;jsessionid=DrxR3OxDGC8VTtP-_wvcUeo-TYg1YOL3qZJsAAFdyFhTZHrpC436!-1430904473',
 			bingList: [],
-			bgIndex: 0,
-			showBg: true
+			bgIndex: 8,
+			showBg: true,
 		};
 	},
 	mounted() {
@@ -43,7 +41,7 @@ export default {
 	},
 	methods: {
 		_getBingList() {
-			this.$get('getBingBGListApi').then(res => {
+			this.$get('getBingBGListApi').then((res) => {
 				this.bingList = res.data;
 				console.log(this.bingList);
 			});
@@ -69,8 +67,8 @@ export default {
 	components: {
 		LinkPart,
 		NextButton,
-		Blog
-	}
+		Blog,
+	},
 };
 </script>
 

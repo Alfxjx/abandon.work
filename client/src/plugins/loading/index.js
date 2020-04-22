@@ -3,14 +3,20 @@ import Loading from './loading.vue';
 let instance;
 let el;
 
-Loading.install = function(Vue) {
+Loading.install = function(Vue, options) {
 	Vue.prototype.$loading = {
 		show() {
 			if (!instance) {
 				let LoadingInstance = Vue.extend(Loading);
 				el = document.createElement('div');
 				document.body.appendChild(el);
-				instance = new LoadingInstance().$mount(el);
+				let Profile = new LoadingInstance();
+				if (options) {
+					if (options.hint) {
+						Profile.hint = options.hint;
+					}
+				}
+				instance = Profile.$mount(el);
 			} else {
 				return instance;
 			}
