@@ -11,14 +11,19 @@ export class BingService {
   constructor(@InjectModel('Bing') private readonly bingModel: Model<Bing>) {}
   private readonly logger = new Logger(BingService.name);
 
-  @Cron('00 00 14 * * *')
-  // @Timeout(1000)
+  @Timeout(3000)
+  async test() {
+    this.logger.log('timeout 3000');
+  }
+
+  // @Cron('00 00 14 * * *')
+  @Timeout(1000)
   async getBingLinks(): Promise<Bing> {
     this.logger.log('get bing 壁纸...');
     const url = 'https://cn.bing.com/';
     let linkUrl: string = await pptr
       .launch({
-        headless: true,
+        headless: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
       })
       .then(async browser => {
@@ -31,6 +36,8 @@ export class BingService {
           let resUrl = css.backgroundImage;
           return /^url\(\"(\S+)\"\)$/i.exec(resUrl)[1];
         }, bg);
+        await page.close();
+        await browser.close();
         return res;
       });
     let date = new Date();
@@ -45,52 +52,5 @@ export class BingService {
   private async saveLinks(link: CreateBingDTO): Promise<Bing> {
     let saveLinks = await this.bingModel(link);
     return await saveLinks.save();
-  }
-
-  async getBingLink(): Promise<Bing[]> {
-    // await this.bingModel.remove();
-    const data = await this.bingModel.find();
-    return data;
-  }
-
-  // TODO 改成enum
-  async getBingLinkSorted(sort: number): Promise<Bing> {
-    const data = await this.bingModel
-      .find({})
-      .sort({ likes: sort })
-      .exec();
-    return data;
-  }
-
-  async findBingById(id: string): Promise<Bing> {
-    const res = await this.bingModel.findById(id);
-    return res;
-  }
-
-  async likeOneBing(id: string) {
-    let { likes } = await this.findBingById(id);
-    const res = await this.bingModel.findByIdAndUpdate(
-      id,
-      {
-        likes: ++likes,
-      },
-      { new: true },
-    );
-    return res;
-  }
-
-  async createBing(bingDTO: CreateBingDTO): Promise<Bing> {
-    const newBing = await this.bingModel(bingDTO);
-    return newBing.save();
-  }
-
-  async deleteBing(postID: string): Promise<any> {
-    const deletedPost = await this.bingModel.findByIdAndRemove(postID);
-    return deletedPost;
-  }
-
-  async deleteBingAll(): Promise<Bing> {
-    const del = await this.bingModel.remove();
-    return del;
   }
 }

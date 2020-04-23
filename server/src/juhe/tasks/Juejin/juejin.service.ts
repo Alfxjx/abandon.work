@@ -67,6 +67,7 @@ export class JuejinService {
           }
           return ret;
         }, ulDOM);
+        await page.close();
         return res;
       });
     this.logger.log(`数据长度${data.length}`);
@@ -83,10 +84,5 @@ export class JuejinService {
   async saveJuejinLikeList(data: CreateJuejinDTO): Promise<Juejin> {
     const newList = await new this.juejinModel(data);
     return await newList.save();
-  }
-
-  async getJuejinLikeList(): Promise<Juejin[]> {
-    const data = await this.juejinModel.find();
-    return data;
   }
 }
