@@ -16,8 +16,8 @@ export class BingService {
     this.logger.log('timeout 3000');
   }
 
-  // @Cron('00 00 14 * * *')
-  @Timeout(1000)
+  @Cron('00 00 14 * * *')
+  // @Timeout(1000)
   async getBingLinks(): Promise<Bing> {
     this.logger.log('get bing 壁纸...');
     const url = 'https://cn.bing.com/';
