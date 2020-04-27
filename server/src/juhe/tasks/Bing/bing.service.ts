@@ -13,7 +13,7 @@ export class BingService {
 
   @Timeout(3000)
   async test() {
-    this.logger.log('timeout 3000');
+    this.logger.log('test timeout 3000');
   }
 
   @Cron('00 00 14 * * *')
@@ -23,7 +23,7 @@ export class BingService {
     const url = 'https://cn.bing.com/';
     let linkUrl: string = await pptr
       .launch({
-        headless: false,
+        headless: true,
         args: ['--no-sandbox', '--disable-setuid-sandbox'],
       })
       .then(async browser => {
