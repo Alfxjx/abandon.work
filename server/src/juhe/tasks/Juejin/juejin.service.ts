@@ -4,7 +4,7 @@ import { Juejin } from '../../interfaces/index';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateJuejinDTO } from '../../dto/index';
-const pptr: any = require('puppeteer');
+
 @Injectable()
 export class JuejinService {
   constructor(
@@ -19,57 +19,8 @@ export class JuejinService {
   async dailyGetJuejinLikeList() {
     this.logger.log('daily mission: get juejin like list');
     const url: string = 'https://juejin.im/user/5bb5eb00e51d453eb93d896d/likes';
-    let data: Juejin[] = await pptr
-      .launch({
-        headless: true,
-        args: ['--no-sandbox', '--disable-setuid-sandbox'],
-      })
-      .then(async browser => {
-        const page = await browser.newPage();
-        await page.goto(url);
-        await page.waitFor(2000);
-        let ulDOM = await page.$('.entry-list');
-        let res = await page.evaluate(ul => {
-          let ret: Juejin[] = [];
-          let list = ul.querySelectorAll('.item');
-          for (let i = 0; i < list.length; i++) {
-            let titleDOM = list[i].querySelector('.title');
-            let link, title, likeCount;
-            if (!titleDOM) {
-              link = '';
-              title = '';
-            } else {
-              link = titleDOM.href;
-              title = titleDOM.innerText;
-            }
-
-            let tags = [];
-            let tagsDOM = list[i].querySelectorAll('a.tag');
-            if (tagsDOM) {
-              for (let tag of tagsDOM) {
-                tags.push(tag.innerText);
-              }
-            }
-            let countDOM = list[i].querySelector('.count');
-            if (!countDOM) {
-              likeCount = 0;
-            } else {
-              likeCount = countDOM.innerText;
-            }
-            if (
-              link !== '' &&
-              title !== '' &&
-              likeCount !== 0 &&
-              tags.length !== 0
-            ) {
-              ret.push({ link, title, likeCount, tags });
-            }
-          }
-          return ret;
-        }, ulDOM);
-        await page.close();
-        return res;
-      });
+    // TODO use axios instead
+    let data: Juejin[] = [];
     this.logger.log(`数据长度${data.length}`);
     this.logger.log(data[0]);
     // 保存获取的数据到数据库
