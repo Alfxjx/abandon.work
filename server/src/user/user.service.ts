@@ -1,29 +1,78 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from './interfaces/user.interface';
-import { CreateUserDTO } from './dto/create-user.dto';
+import { User, UserRO } from './interfaces/user.interface';
+import { CreateUserDTO, LoginUserDTO } from './dto/create-user.dto';
+import * as jwt from 'jsonwebtoken';
+import { SECRET } from '../config';
+import * as argon2 from 'argon2';
+
 
 @Injectable()
 export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
 
   async register(newUserDTO: CreateUserDTO): Promise<User> {
-    //  TODO check if exist
-    // const isExist = await this.userModel.find({
-    //   username: newUserDTO.username,
-    // });
-    // if (isExist) {
-    //   throw new HttpException('CONFLICT existed', HttpStatus.CONFLICT);
-    // }
+    //  check if exist
+    let isExist = await this.userModel.findOne({username:newUserDTO.username});
+    if(isExist!==null){
+      throw new HttpException({message: 'Input data validation failed, already registered'}, HttpStatus.BAD_REQUEST);
+    }
     const newUser = await this.userModel(newUserDTO);
     return newUser.save();
   }
   
-  async login() {}
+  async login(login:LoginUserDTO) {
+    let user;
+    if(login.mail){
+      user = await this.userModel.findOne({mail:login.mail});
+    } else if(login.username){
+      user = await this.userModel.findOne({username:login.username});
+    } else {
+      throw new HttpException({message: 'Input data validation failed'}, HttpStatus.BAD_REQUEST)
+    }
+    // if (!user) {
+    //   return null;
+    // }
+    // TODO argon2 加密一波 需要在注册的时候就加密
+    if (user.password == login.password) {
+      return user;
+    }
+
+    // return null;
+  }
 
   async getUserList(){
     const list = await this.userModel.find().exec();
     return list;
   }
+
+  async findByName(name:string):Promise<UserRO>{
+    let res = await this.userModel.findOne({username:name});
+    return this.buildUserRO(res);
+  }
+
+  public generateJWT(user) {
+    let today = new Date();
+    let exp = new Date(today);
+    exp.setDate(today.getDate() + 60);
+
+    return jwt.sign({
+      username: user.username,
+      email: user.mail,
+      exp: exp.getTime() / 1000,
+    }, SECRET);
+  };
+
+  private buildUserRO(user):UserRO {
+    const userRO = {
+      username: user.username,
+      mail: user.mail,
+      token: this.generateJWT(user),
+    };
+
+    return userRO;
+  }
+
+
 }

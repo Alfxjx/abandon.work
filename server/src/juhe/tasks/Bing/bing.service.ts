@@ -10,20 +10,20 @@ export class BingService {
   constructor(@InjectModel('Bing') private readonly bingModel: Model<Bing>) {}
   private readonly logger = new Logger(BingService.name);
 
-  @Timeout(3000)
-  async test() {
-    this.logger.log('timeout 3000');
-  }
+  // @Timeout(3000)
+  // async test() {
+  //   this.logger.log('timeout 3000');
+  // }
 
   // @Cron('00 00 14 * * *')
   @Timeout(1000)
   async getBingLinks(): Promise<Bing> {
-    this.logger.log('get bing 壁纸...');
+    // this.logger.log('get bing 壁纸...');
     const url = 'https://cn.bing.com/';
     // TODO use axios instead
     let linkUrl: string = '';
     let date = new Date();
-    this.logger.log('get bing 壁纸!');
+    // this.logger.log('get bing 壁纸!');
     return this.saveLinks({
       date: date.toISOString(),
       link: linkUrl,
