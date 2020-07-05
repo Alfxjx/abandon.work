@@ -5,3 +5,9 @@ export interface User extends Document {
   readonly password: string;
   readonly mail: string;
 }
+
+export interface UserRO extends Document {
+  readonly username: string;
+  readonly mail: string;
+  readonly token: any;
+}

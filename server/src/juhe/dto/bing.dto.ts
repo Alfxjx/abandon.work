@@ -1,5 +1,5 @@
 export class CreateBingDTO {
   readonly date: string;
-  readonly link: string;
+  readonly link: any;
   likes: number;
 }
