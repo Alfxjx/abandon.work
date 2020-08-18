@@ -26,14 +26,17 @@ export class BingService {
     const url = `https://cn.bing.com/HPImageArchive.aspx?format=js&idx=${idx}&n=${number}`;
     this.logger.log('get bing 壁纸...');
     let linkUrl = '';
+    let copyright = '';
     await axios.get(url).then(res => {
-      linkUrl = res.data;
+      linkUrl = 'https://bing.com'+res.data.images[0].url;
+      copyright = res.data.images[0].copyright;
     });
     let date = new Date();
     // this.logger.log('get bing 壁纸!');
     return this.saveLinks({
       date: date.toISOString(),
       link: linkUrl,
+      copyright:copyright,
       likes: 0,
     });
   }
