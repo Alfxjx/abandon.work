@@ -19,7 +19,7 @@ export class UserModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(AuthMiddleware)
-      .forRoutes({ path: 'user', method: RequestMethod.GET });
+      .forRoutes({path:'user', method: RequestMethod.DELETE});
       // 在此加上的路由会调用中间件
   }
 }

@@ -16,8 +16,9 @@ export class BingService {
   //   this.logger.log('timeout 3000');
   // }
 
-  // @Cron('00 00 14 * * *')
-  @Timeout(1000)
+  // 每天下午2点采集一下
+  @Cron('00 00 14 * * *')
+  // @Timeout(1000)
   async getBingLinks(): Promise<Bing> {
     // idx 第几个
     // number 表示请求的数量

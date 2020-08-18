@@ -1,10 +1,18 @@
-import { Controller, Post, Res, Body, HttpStatus, Get } from '@nestjs/common';
+import { Controller, Post, Res, Body, HttpStatus, Get, Delete, Query } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDTO, LoginUserDTO } from './dto/create-user.dto';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
+
+  @Get()
+  async getUserList(@Res() res) {
+    const list = await this.userService.getUserList();
+    return res.status(HttpStatus.OK).json({
+      list,
+    });
+  }
 
   @Post('register')
   async register(@Res() res, @Body() CreateUserDTO: CreateUserDTO) {
@@ -26,11 +34,8 @@ export class UserController {
     });
   }
 
-  @Get()
-  async getUserList(@Res() res) {
-    const list = await this.userService.getUserList();
-    return res.status(HttpStatus.OK).json({
-      list,
-    });
+  @Delete()
+  async delete(@Query() params){
+    return await this.userService.delete(params.id);
   }
 }

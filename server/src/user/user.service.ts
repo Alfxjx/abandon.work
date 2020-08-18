@@ -10,46 +10,53 @@ import * as argon2 from 'argon2';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('User') private readonly userModel: Model<User>) {}
+  constructor(@InjectModel('User') private readonly userModel: Model<User>) { }
 
   async register(newUserDTO: CreateUserDTO): Promise<User> {
     //  check if exist
-    let isExist = await this.userModel.findOne({username:newUserDTO.username});
-    if(isExist!==null){
-      throw new HttpException({message: 'Input data validation failed, already registered'}, HttpStatus.BAD_REQUEST);
+    let isExist = await this.userModel.findOne({ username: newUserDTO.username });
+    if (isExist !== null) {
+      throw new HttpException({ message: 'Input data validation failed, already registered' }, HttpStatus.BAD_REQUEST);
     }
     const newUser = await this.userModel(newUserDTO);
     return newUser.save();
   }
-  
-  async login(login:LoginUserDTO) {
+
+  async login(login: LoginUserDTO) {
     let user;
-    if(login.mail){
-      user = await this.userModel.findOne({mail:login.mail});
-    } else if(login.username){
-      user = await this.userModel.findOne({username:login.username});
+    if (login.mail) {
+      user = await this.userModel.findOne({ mail: login.mail });
+    } else if (login.username) {
+      user = await this.userModel.findOne({ username: login.username });
     } else {
-      throw new HttpException({message: 'Input data validation failed'}, HttpStatus.BAD_REQUEST)
+      throw new HttpException({ message: 'Input data validation failed' }, HttpStatus.BAD_REQUEST)
     }
     // if (!user) {
     //   return null;
     // }
     // TODO argon2 加密一波 需要在注册的时候就加密
-    if (user.password == login.password) {
+    if (!login.password) {
+      throw new HttpException({ message: 'no password input' }, HttpStatus.BAD_REQUEST)
+    } else if (user.password == login.password) {
       return user;
     }
 
     // return null;
   }
 
-  async getUserList(){
+  async getUserList() {
     const list = await this.userModel.find().exec();
     return list;
   }
 
-  async findByName(name:string):Promise<UserRO>{
-    let res = await this.userModel.findOne({username:name});
+  async findByName(name: string): Promise<UserRO> {
+    let res = await this.userModel.findOne({ username: name });
     return this.buildUserRO(res);
+  }
+
+  async delete(id){
+    let res =  await this.userModel.findByIdAndRemove(id);
+    return res;
   }
 
   public generateJWT(user) {
@@ -64,7 +71,7 @@ export class UserService {
     }, SECRET);
   };
 
-  private buildUserRO(user):UserRO {
+  private buildUserRO(user): UserRO {
     const userRO = {
       username: user.username,
       mail: user.mail,
