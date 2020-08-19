@@ -1,0 +1,27 @@
+/* // @note fix the style that h1 is smaller than h2 */
+/* https://www.it1352.com/867990.html */
+h1 {
+    font-size: 2em;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+/* format the pictures in preview window */
+
+p>img {
+    width  : 80%;
+    height : 80%;
+    display: block;
+    margin : 20px auto;
+}
+
+.preview-area {
+    background: #fff;
+    border    : 1px solid #d9d9d9;
+}
+
+.show-html {
+    padding: 4px 11px;
+}

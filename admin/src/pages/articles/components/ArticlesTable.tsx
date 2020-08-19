@@ -16,6 +16,11 @@ export default class ArticlesTable extends React.Component {
     render() {
         const columns = [
             {
+                title:'序号',
+                dataIndex:'key',
+                key:'key'
+            },
+            {
                 title: '标题',
                 dataIndex: 'title',
                 key: 'title'
@@ -42,7 +47,7 @@ export default class ArticlesTable extends React.Component {
         })
         return (
             <div>
-                <Table columns={columns} dataSource={tableData}></Table>
+                <Table columns={columns} dataSource={tableData} bordered></Table>
             </div>
         )
     }
