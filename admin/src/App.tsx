@@ -6,12 +6,18 @@ import Articles from './pages/articles/index';
 import Juhe from './pages/juhe/index';
 import Home from "./pages/Home/index";
 import BBS from './pages/bbs/index';
+import Login from './pages/Login/index'
 import { HashRouter, Link, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 
 const { Content, Footer, Sider } = Layout;
 
-class App extends React.Component {
+interface IProps {
+	isLogin?: boolean
+}
+
+class App extends React.Component<IProps> {
 	state = {
 		collapsed: false,
 	};
@@ -22,8 +28,9 @@ class App extends React.Component {
 	};
 
 	render() {
-		return (
-			<HashRouter>
+		let renderer;
+		if (this.props.isLogin) {
+			renderer = <HashRouter>
 				<div className="App">
 					<Layout style={{ minHeight: '100vh' }}>
 						<Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
@@ -80,8 +87,25 @@ class App extends React.Component {
 					</Layout>
 				</div>
 			</HashRouter>
-		);
+		} else {
+			renderer = <Login />
+		}
+		return renderer
 	}
 }
 
-export default App;
+function mapStateToProps(state: boolean) {
+	return {
+		isLogin: state
+	}
+}
+
+//需要触发什么行为
+function mapDispatchToProps(dispatch:any) {
+    return {
+        Login: () => dispatch({ type: 'login' }),
+        Logout: () => dispatch({ type: 'logout' })
+    }
+  }
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

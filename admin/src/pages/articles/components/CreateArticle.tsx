@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import marked from 'marked';
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
-import { Row, Col, Input, Button, Select } from 'antd';
+import { Row, Col, Input, Button, Select, Upload } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
 import './CreateArticle.css';
 
 const { TextArea } = Input;
@@ -59,6 +60,18 @@ export default function CreateArticle() {
         }
     }
 
+    const uploadProps = {
+        action: '',
+        // @ts-ignore
+        onChange({ file, fileList }) {
+            if (file.status !== 'uploading') {
+                // TODO check upload过程
+                console.log(file, fileList);
+            }
+        },
+
+    }
+
     return (
         <div>
             <Row gutter={5} style={{ marginTop: "10px" }}>
@@ -70,14 +83,20 @@ export default function CreateArticle() {
                             </Select>
                         </Col>
                     </Row>
-                    <Row>
-                        <Col>
+                    <Row style={{ marginTop: "10px" }}>
+                        <Col span={12}>
                             <TextArea
-                                rows={15}
                                 onChange={changeDesContent}
                                 onPressEnter={changeDesContent}
-                                placeholder="description"
+                                placeholder="输入摘要"
                             />
+                        </Col>
+                        <Col span={12}>
+                            <Upload {...uploadProps}>
+                                <Button>
+                                    <UploadOutlined /> Upload
+                                </Button>
+                            </Upload>
                         </Col>
                     </Row>
                     <Row gutter={8} style={{ marginTop: "10px" }} >
