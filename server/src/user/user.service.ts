@@ -39,6 +39,8 @@ export class UserService {
       throw new HttpException({ message: 'no password input' }, HttpStatus.BAD_REQUEST)
     } else if (user.password == login.password) {
       return user;
+    } else {
+      throw new HttpException({message:'wrong password'}, HttpStatus.UNAUTHORIZED)
     }
 
     // return null;

@@ -32,8 +32,7 @@ class App extends React.Component<IProps> {
 
 	render() {
 		let renderer;
-		// TODO 需要修改路由链接
-		if (this.props.isLogin) {
+		if (sessionStorage.getItem('login') === '1' || this.props.isLogin) {
 			renderer =
 				<div className="App">
 					<Layout style={{ minHeight: '100vh' }}>

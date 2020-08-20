@@ -2,7 +2,8 @@ import React from 'react';
 import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
 import './index.css';
 import { postLogin } from "../../api/request";
-import qs from 'qs';
+import { connect } from "react-redux";
+
 
 const layout = {
     labelCol: { span: 8 },
@@ -12,14 +13,27 @@ const tailLayout = {
     wrapperCol: { offset: 8, span: 16 },
 };
 
-const Login: React.FC = () => {
+const Login: React.FC = (props: any) => {
 
     const onFinish = (values: any) => {
         console.log('Success:', values);
         const { username, password } = values;
-        postLogin(qs.stringify({ username: username, password: password })).then((res: any) => {
-            console.log(res);
-        })
+        let status, token, message;
+        postLogin({ username: username, password: password }).then((res: any) => {
+            status = res.status;
+            token = res.post.token;
+            message = res.message;
+            return { status, token, message }
+        }).then(res => {
+            console.log(res.status)
+            if (res.status === 1) {
+                props.Login();
+                sessionStorage.setItem('login', '1');
+                localStorage.setItem('jwt', res.token)
+            } else {
+                props.Logout();
+            }
+        });
 
     };
 
@@ -69,4 +83,18 @@ const Login: React.FC = () => {
     )
 }
 
-export default Login;
+const mapStateToProps = (state: any) => {
+    return {
+        isLogin: state
+    }
+}
+
+// @ts-ignore
+const mapDispatchToProps = (dispatch) => {
+    return {
+        Login: () => dispatch({ type: 'login' }),
+        Logout: () => dispatch({ type: 'logout' })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
