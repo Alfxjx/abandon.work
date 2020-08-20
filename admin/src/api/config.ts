@@ -4,7 +4,10 @@ export const baseUrl: string = 'http://www.abandon.work/api';
 
 //axios 的实例及拦截器配置
 const axiosInstance = axios.create({
-    baseURL: baseUrl
+    baseURL: baseUrl,
+    headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+    }
 });
 
 axiosInstance.interceptors.response.use(

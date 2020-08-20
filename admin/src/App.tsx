@@ -7,21 +7,24 @@ import Juhe from './pages/juhe/index';
 import Home from "./pages/Home/index";
 import BBS from './pages/bbs/index';
 import Login from './pages/Login/index'
-import { HashRouter, Link, Route, Switch } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
 const { Content, Footer, Sider } = Layout;
 
 interface IProps {
-	isLogin?: boolean
+	isLogin?: boolean;
+	history?: any;
 }
 
 class App extends React.Component<IProps> {
+	constructor(props: IProps) {
+		super(props);
+	}
 	state = {
 		collapsed: false,
 	};
-
 	onCollapse = (collapsed: boolean) => {
 		console.log(collapsed);
 		this.setState({ collapsed });
@@ -29,8 +32,9 @@ class App extends React.Component<IProps> {
 
 	render() {
 		let renderer;
+		// TODO 需要修改路由链接
 		if (this.props.isLogin) {
-			renderer = <HashRouter>
+			renderer =
 				<div className="App">
 					<Layout style={{ minHeight: '100vh' }}>
 						<Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
@@ -86,7 +90,7 @@ class App extends React.Component<IProps> {
 						</Layout>
 					</Layout>
 				</div>
-			</HashRouter>
+
 		} else {
 			renderer = <Login />
 		}
@@ -101,11 +105,11 @@ function mapStateToProps(state: boolean) {
 }
 
 //需要触发什么行为
-function mapDispatchToProps(dispatch:any) {
-    return {
-        Login: () => dispatch({ type: 'login' }),
-        Logout: () => dispatch({ type: 'logout' })
-    }
-  }
+function mapDispatchToProps(dispatch: any) {
+	return {
+		Login: () => dispatch({ type: 'login' }),
+		Logout: () => dispatch({ type: 'logout' })
+	}
+}
 
-export default connect(mapStateToProps,mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

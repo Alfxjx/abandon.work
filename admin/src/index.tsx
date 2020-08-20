@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import reducer from "./store/reducer";
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { HashRouter, Route } from 'react-router-dom'
 
 const store = createStore(reducer);
 
@@ -14,7 +15,9 @@ ReactDOM.render(
   //   <App />
   // </React.StrictMode>,
   <Provider store={store}>
-    <App />
+    <HashRouter>
+      <Route path={`/`} component={App}></Route>
+    </HashRouter>
   </Provider>,
   document.getElementById('root')
 );

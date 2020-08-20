@@ -29,7 +29,7 @@ export class UserService {
     } else if (login.username) {
       user = await this.userModel.findOne({ username: login.username });
     } else {
-      throw new HttpException({ message: 'Input data validation failed' }, HttpStatus.BAD_REQUEST)
+      throw new HttpException({ message: 'Input data validation failed, login' }, HttpStatus.BAD_REQUEST)
     }
     // if (!user) {
     //   return null;
