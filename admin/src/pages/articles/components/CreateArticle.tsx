@@ -62,7 +62,7 @@ export default function CreateArticle() {
     }
 
     const uploadProps = {
-        action: 'http://www.abandon.work/api/picture',
+        action: '/api/picture',
         // @ts-ignore
         onChange({ file, fileList }) {
             if (file.status !== 'uploading') {
