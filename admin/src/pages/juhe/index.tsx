@@ -1,9 +1,14 @@
 import React from 'react';
 
-class Juhe extends React.Component {
-	render() {
-		return <div>juhe</div>;
-	}
+const Juhe: React.FC = () => {
+
+
+	return (
+		<>
+			<div>Juhe</div>
+		</>
+	);
+
 }
 
 export default Juhe;

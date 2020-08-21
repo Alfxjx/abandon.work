@@ -5,6 +5,7 @@ import 'highlight.js/styles/monokai-sublime.css';
 import { Row, Col, Input, Button, Select, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import './CreateArticle.css';
+import { postNewPicture } from "../../../api/request";
 
 const { TextArea } = Input;
 // const { Option } = Select;
@@ -61,12 +62,13 @@ export default function CreateArticle() {
     }
 
     const uploadProps = {
-        action: '',
+        action: 'http://www.abandon.work/api/picture',
         // @ts-ignore
         onChange({ file, fileList }) {
             if (file.status !== 'uploading') {
                 // TODO check upload过程
                 console.log(file, fileList);
+                // postNewPicture({file:1})
             }
         },
 

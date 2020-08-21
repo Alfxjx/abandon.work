@@ -10,6 +10,7 @@
     "antd": "^4.0.4",
     "axios": "^0.19.2",
     "highlight.js": "^10.1.2",
+    "http-proxy-middleware": "^1.0.5",
     "marked": "^1.1.1",
     "qs": "^6.9.4",
     "react": "^16.13.1",

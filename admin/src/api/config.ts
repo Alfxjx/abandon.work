@@ -10,6 +10,14 @@ const axiosInstance = axios.create({
     }
 });
 
+// 图片
+const axiosPicInstance = axios.create({
+    baseURL: baseUrl,
+    headers: {
+        'content-type': 'multipart/form-data'
+    }
+})
+
 axiosInstance.interceptors.response.use(
     res => res.data,
     err => {
@@ -17,6 +25,14 @@ axiosInstance.interceptors.response.use(
     }
 );
 
+axiosPicInstance.interceptors.response.use(
+    res => res.data,
+    err => {
+        console.log(err, "网络错误");
+    }
+);
+
 export {
-    axiosInstance
+    axiosInstance,
+    axiosPicInstance
 };
