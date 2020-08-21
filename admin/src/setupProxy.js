@@ -6,8 +6,8 @@ module.exports = function (app) {
         createProxyMiddleware(
             '/api',
             {
-                target: 'https://www.abandon.work',
-                changeOrigin: true
+                target: 'http://www.abandon.work',
+                changeOrigin: true,
             })
     );
 

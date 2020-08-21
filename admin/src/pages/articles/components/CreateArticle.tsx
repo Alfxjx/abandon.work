@@ -17,6 +17,7 @@ export default function CreateArticle() {
     // eslint-disable-next-line
     const [tagContent, setTagContent] = useState([] as any[]);
     const [desContent, setDesContent] = useState('');
+    const [picList, setPicList] = useState([] as string[]);
 
     marked.setOptions({
         renderer: new marked.Renderer(),
@@ -33,7 +34,7 @@ export default function CreateArticle() {
     })
 
     useEffect(() => {
-        console.log(tagContent)
+        console.log(tagContent);
     })
 
     const changeContent = (e: any) => {
@@ -65,10 +66,12 @@ export default function CreateArticle() {
         action: '/api/picture',
         // @ts-ignore
         onChange({ file, fileList }) {
-            if (file.status !== 'uploading') {
-                // TODO check upload过程
-                console.log(file, fileList);
-                // postNewPicture({file:1})
+            if (file.status === 'done') {
+                setPicList([...picList, file.name]);
+                console.log(fileList)
+            }
+            if (file.status === 'removed') {
+                setPicList([...picList]);
             }
         },
 
@@ -86,19 +89,30 @@ export default function CreateArticle() {
                         </Col>
                     </Row>
                     <Row style={{ marginTop: "10px" }}>
-                        <Col span={12}>
+                        <Col span={6}>
                             <TextArea
                                 onChange={changeDesContent}
                                 onPressEnter={changeDesContent}
                                 placeholder="输入摘要"
                             />
                         </Col>
-                        <Col span={12}>
+                        <Col span={6}>
                             <Upload {...uploadProps}>
                                 <Button>
                                     <UploadOutlined /> Upload
                                 </Button>
                             </Upload>
+                        </Col>
+                        <Col span={12}>
+                            {
+                                picList.map((item) => {
+                                    return (
+                                        <span key={item + Math.random().toString()}>
+                                            {'http://www.abandon.work/api/public/'+item}
+                                        </span>
+                                    )
+                                })
+                            }
                         </Col>
                     </Row>
                     <Row gutter={8} style={{ marginTop: "10px" }} >
