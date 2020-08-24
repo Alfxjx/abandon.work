@@ -7,7 +7,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // cors
   app.enableCors({
-    allowedHeaders: 'Authorization'
+    allowedHeaders: 'Authorization',
+    preflightContinue: true
   });
   // set static path like .png or .pdf
   app.use('/public', serveStatic(join(__dirname, '../public'), {
