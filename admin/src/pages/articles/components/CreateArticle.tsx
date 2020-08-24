@@ -18,6 +18,7 @@ export default function CreateArticle() {
     // eslint-disable-next-line
     const [tagContent, setTagContent] = useState([] as any[]);
     const [desContent, setDesContent] = useState('');
+    const [titlePicContent, setTitlePicContent] = useState('');
     const [picList, setPicList] = useState([] as string[]);
 
     marked.setOptions({
@@ -52,13 +53,18 @@ export default function CreateArticle() {
         setDesContent(e.target.value);
     }
 
-    const handleChange = (value: any) => {
+    const changeTagContent = (value: any) => {
         console.log(`selected ${value}`);
         setTagContent(value);
     }
 
+    const changeTitlePicContent = (e: any) => {
+        setTitlePicContent(e.target.value);
+    }
+
     const handleSubmitBlog = () => {
         console.log('submit');
+        console.log(`jwt- ${localStorage.getItem('jwt')}`)
         let submitObj = {
             title: titleContent,
             author: sessionStorage.getItem('username'),
@@ -66,7 +72,8 @@ export default function CreateArticle() {
             tags: tagContent.join(','),
             body: articleContent,
             date_posted: new Date(),
-            promote: false
+            promote: false,
+            picture: titlePicContent
         }
         postNewBlog(submitObj)
     }
@@ -88,15 +95,27 @@ export default function CreateArticle() {
             <Row gutter={5} style={{ marginTop: "10px" }}>
                 <Col span={24}>
                     <Row gutter={8} justify={"start"}>
-                        <Col span={12}>
+                        <Col span={8}>
                             <Input
                                 placeholder="输入标题"
                                 onChange={changeTitleContent}
                                 onPressEnter={changeTitleContent}
                             />
                         </Col>
-                        <Col span={12} style={{ padding: 0 }}>
-                            <Select mode="tags" style={{ width: '100%' }} placeholder="Tags Mode" onChange={handleChange}>
+                        <Col span={8}>
+                            <Input
+                                placeholder="标题图链接"
+                                onChange={changeTitlePicContent}
+                                onPressEnter={changeTitlePicContent}
+                            />
+                        </Col>
+                        <Col span={8} style={{ padding: 0 }}>
+                            <Select
+                                mode="tags"
+                                style={{ width: '100%' }}
+                                placeholder="Tags Mode"
+                                onChange={changeTagContent}
+                            >
                             </Select>
                         </Col>
                     </Row>

@@ -1,5 +1,5 @@
 import { HttpException } from '@nestjs/common/exceptions/http.exception';
-import { NestMiddleware, HttpStatus, Injectable } from '@nestjs/common';
+import { NestMiddleware, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { Request, Response, NextFunction } from 'express';
 import * as jwt from 'jsonwebtoken';
@@ -10,11 +10,12 @@ import { UserService } from './user.service';
 export class AuthMiddleware implements NestMiddleware {
   constructor(private readonly userService: UserService) { }
 
-  // private readonly logger = new Logger(AuthMiddleware.name);
+  private readonly logger = new Logger(AuthMiddleware.name);
 
   async use(req: any, res: Response, next: NextFunction) {
-    const authHeaders = req.headers.Authorization;
-    // this.logger.log(authHeaders);
+    // @note 这里的authorization对大小写不敏感
+    const authHeaders = req.headers.authorization;
+    this.logger.log(`authHeaders: ${authHeaders}`);
     if (authHeaders) {
       const token = authHeaders;
       const decoded: any = jwt.verify(token, SECRET);
