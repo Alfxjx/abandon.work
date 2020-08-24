@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -9,6 +9,7 @@ import { PictureModule } from './picture/picture.module';
 // import { ServeStaticModule } from '@nestjs/serve-static';
 // import { join } from 'path';
 import { JuheModule } from './juhe/juhe.module';
+import { OptionMiddleware } from "./shared/middlewares/option.middleware";
 
 @Module({
   imports: [
@@ -29,4 +30,8 @@ import { JuheModule } from './juhe/juhe.module';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  public configure(consumer: MiddlewareConsumer) {
+    consumer.apply(OptionMiddleware).forRoutes('/')
+  }
+}
