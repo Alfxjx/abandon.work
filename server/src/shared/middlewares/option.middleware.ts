@@ -14,7 +14,7 @@ export class OptionMiddleware implements NestMiddleware {
         res.header("Access-Control-Allow-Credentials", "true");
         if (req.method == "OPTIONS") {
             this.logger.log('in options')
-            res.status(200).send('options ok');
+            res.send(200);
         }
         else {
             next();
