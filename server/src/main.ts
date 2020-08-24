@@ -8,7 +8,9 @@ async function bootstrap() {
   // cors
   app.enableCors({
     allowedHeaders: 'Authorization',
-    preflightContinue: false 
+    preflightContinue: false,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    origin:'*'
   });
   // set static path like .png or .pdf
   app.use('/public', serveStatic(join(__dirname, '../public'), {

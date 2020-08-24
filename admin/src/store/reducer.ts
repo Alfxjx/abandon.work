@@ -10,9 +10,9 @@ const logout = {
 
 const reducer = (state = isLogin, action: { type: string }) => {
     switch (action.type) {
-        case 'login':
+        case login.type:
             return state = true;
-        case 'logout':
+        case logout.type:
             return state = false;
         default:
             return state;

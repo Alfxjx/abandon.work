@@ -19,9 +19,9 @@ interface IProps {
 }
 
 class App extends React.Component<IProps> {
-	constructor(props: IProps) {
-		super(props);
-	}
+	// constructor(props: IProps) {
+	// 	super(props);
+	// }
 	state = {
 		collapsed: false,
 	};
