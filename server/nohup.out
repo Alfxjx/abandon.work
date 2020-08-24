@@ -1,0 +1,7 @@
+
+> server@0.0.1 start /root/abandon.work/server
+> nest start
+
+(node:25332) [DEP0091] DeprecationWarning: crypto.DEFAULT_ENCODING is deprecated.
+(node:25332) [DEP0010] DeprecationWarning: crypto.createCredentials is deprecated. Use tls.createSecureContext instead.
+(node:25332) [DEP0011] DeprecationWarning: crypto.Credentials is deprecated. Use tls.SecureContext instead.
