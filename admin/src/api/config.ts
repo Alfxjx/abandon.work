@@ -24,7 +24,7 @@ const axiosLoginInstance = axios.create({
     baseURL: baseUrl,
     headers: {
         'content-type': 'application/x-www-form-urlencoded',
-        'Authorization': localStorage.getItem('jwt') || ''
+        'authorization': localStorage.getItem('jwt') || ''
     }
 })
 
