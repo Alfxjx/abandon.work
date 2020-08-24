@@ -5,7 +5,9 @@ import { Request, Response, NextFunction } from 'express';
 @Injectable()
 export class OptionMiddleware implements NestMiddleware {
     constructor() { }
+    private readonly logger = new Logger(OptionMiddleware.name);
     async use(req: Request, res: Response, next: NextFunction) {
+        this.logger.log('this is option middleware')
         res.header('Access-Control-Allow-Origin", "*"')
         res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials");
