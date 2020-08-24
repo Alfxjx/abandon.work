@@ -7,12 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   // cors
   app.enableCors({
-    allowedHeaders:['Authorization']
+    allowedHeaders: 'Authorization'
   });
   // set static path like .png or .pdf
-  app.use('/public',serveStatic(join(__dirname,'../public'),{
+  app.use('/public', serveStatic(join(__dirname, '../public'), {
     // 设置http缓存
-    maxAge:'1d',
+    maxAge: '1d',
     extensions: ['jpg', 'jpeg', 'png', 'gif'],
   }))
   await app.listen(6324);

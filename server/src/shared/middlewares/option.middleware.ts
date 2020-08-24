@@ -13,6 +13,7 @@ export class OptionMiddleware implements NestMiddleware {
         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials");
         res.header("Access-Control-Allow-Credentials", "true");
         if (req.method == "OPTIONS") {
+            this.logger.log('in options')
             res.status(200).send('options ok');
         }
         else {

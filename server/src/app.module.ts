@@ -30,8 +30,11 @@ import { OptionMiddleware } from "./shared/middlewares/option.middleware";
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule {
-  public configure(consumer: MiddlewareConsumer) {
-    consumer.apply(OptionMiddleware).forRoutes('*')
-  }
-}
+
+// export class AppModule implements NestModule {
+//   public configure(consumer: MiddlewareConsumer) {
+//     consumer.apply(OptionMiddleware).forRoutes('*')
+//   }
+// }
+
+export class AppModule {}
