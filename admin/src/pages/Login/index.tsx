@@ -18,18 +18,20 @@ const Login: React.FC = (props: any) => {
     const onFinish = (values: any) => {
         console.log('Success:', values);
         const { username, password } = values;
-        let status, token, message;
+        let status, token, message, nameValue;
         postLogin({ username: username, password: password }).then((res: any) => {
             status = res.status;
             token = res.post.token;
             message = res.message;
-            return { status, token, message }
+            nameValue = res.post.username;
+            return { status, token, message, nameValue }
         }).then(res => {
             console.log(res.status)
             if (res.status === 1) {
                 props.Login();
                 sessionStorage.setItem('login', '1');
-                localStorage.setItem('jwt', res.token)
+                sessionStorage.setItem('username', res.nameValue)
+                localStorage.setItem('jwt', res.token);
             } else {
                 props.Logout();
             }

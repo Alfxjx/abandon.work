@@ -5,13 +5,14 @@ import 'highlight.js/styles/monokai-sublime.css';
 import { Row, Col, Input, Button, Select, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import './CreateArticle.css';
-import { postNewPicture } from "../../../api/request";
+import { postNewBlog } from "../../../api/request";
 
 const { TextArea } = Input;
 // const { Option } = Select;
 
 export default function CreateArticle() {
     // eslint-disable-next-line
+    const [titleContent, setTitleContent] = useState('');
     const [articleContent, setArticleContent] = useState('')  //markdown的编辑内容
     const [markdownContent, setMarkdownContent] = useState('预览内容') //html内容
     // eslint-disable-next-line
@@ -37,6 +38,10 @@ export default function CreateArticle() {
         console.log(tagContent);
     })
 
+    const changeTitleContent = (e:any)=>{
+        setTitleContent(e.target.value);
+    }
+
     const changeContent = (e: any) => {
         setArticleContent(e.target.value)
         let html = marked(e.target.value)
@@ -55,11 +60,15 @@ export default function CreateArticle() {
     const handleSubmitBlog = () => {
         console.log('submit');
         let submitObj = {
+            title: titleContent,
+            author: sessionStorage.getItem('username'),
             description: desContent,
             tags: tagContent,
             body: articleContent,
-            date_posted: new Date()
+            date_posted: new Date(),
+            promote: false
         }
+        postNewBlog(submitObj)
     }
 
     const uploadProps = {
@@ -70,9 +79,6 @@ export default function CreateArticle() {
                 setPicList([...picList, file.name]);
                 console.log(fileList)
             }
-            if (file.status === 'removed') {
-                setPicList([...picList]);
-            }
         },
 
     }
@@ -82,7 +88,13 @@ export default function CreateArticle() {
             <Row gutter={5} style={{ marginTop: "10px" }}>
                 <Col span={24}>
                     <Row gutter={8} justify={"start"}>
-                        <Col span={12}><Input placeholder="输入标题" /></Col>
+                        <Col span={12}>
+                            <Input 
+                                placeholder="输入标题" 
+                                onChange={changeTitleContent}
+                                onPressEnter={changeTitleContent}
+                            />
+                        </Col>
                         <Col span={12} style={{ padding: 0 }}>
                             <Select mode="tags" style={{ width: '100%' }} placeholder="Tags Mode" onChange={handleChange}>
                             </Select>
@@ -108,7 +120,7 @@ export default function CreateArticle() {
                                 picList.map((item) => {
                                     return (
                                         <span key={item + Math.random().toString()}>
-                                            {'http://www.abandon.work/api/public/'+item}
+                                            {'http://www.abandon.work/api/public/' + item}
                                         </span>
                                     )
                                 })
