@@ -38,7 +38,7 @@ export default function CreateArticle() {
         console.log(tagContent);
     })
 
-    const changeTitleContent = (e:any)=>{
+    const changeTitleContent = (e: any) => {
         setTitleContent(e.target.value);
     }
 
@@ -63,7 +63,7 @@ export default function CreateArticle() {
             title: titleContent,
             author: sessionStorage.getItem('username'),
             description: desContent,
-            tags: tagContent,
+            tags: tagContent.join(','),
             body: articleContent,
             date_posted: new Date(),
             promote: false
@@ -89,8 +89,8 @@ export default function CreateArticle() {
                 <Col span={24}>
                     <Row gutter={8} justify={"start"}>
                         <Col span={12}>
-                            <Input 
-                                placeholder="输入标题" 
+                            <Input
+                                placeholder="输入标题"
                                 onChange={changeTitleContent}
                                 onPressEnter={changeTitleContent}
                             />
