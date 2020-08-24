@@ -13,7 +13,7 @@ export class AuthMiddleware implements NestMiddleware {
   // private readonly logger = new Logger(AuthMiddleware.name);
 
   async use(req: any, res: Response, next: NextFunction) {
-    const authHeaders = req.headers.authorization;
+    const authHeaders = req.headers.Authorization;
     // this.logger.log(authHeaders);
     if (authHeaders) {
       const token = authHeaders;
