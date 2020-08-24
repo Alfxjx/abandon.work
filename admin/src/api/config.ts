@@ -1,14 +1,15 @@
 import axios from 'axios';
 
-export const baseUrl: string = 'http://www.abandon.work/api';
-// export const baseUrl: string = 'http://localhost:6324';
+// export const baseUrl: string = 'http://www.abandon.work/api';
+export const baseUrl: string = 'http://localhost:3000/api';
 
 
 //axios 的实例及拦截器配置
 const axiosInstance = axios.create({
     baseURL: baseUrl,
     headers: {
-        'content-type': 'application/x-www-form-urlencoded'
+        'content-type': 'application/x-www-form-urlencoded',
+        // 'Access-Control-Request-Headers':'Authorization'
     }
 });
 
@@ -24,8 +25,8 @@ const axiosLoginInstance = axios.create({
     baseURL: baseUrl,
     headers: {
         'content-type': 'application/x-www-form-urlencoded',
-        'Authorization': localStorage.getItem('jwt') || '',
-        'Access-Control-Allow-Headers':'Authorization'
+        'Authorization': `${localStorage.getItem('jwt')}` || '',
+        // 'Access-Control-Request-Headers':'Authorization'
     }
 })
 
