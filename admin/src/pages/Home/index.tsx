@@ -1,6 +1,6 @@
 import React from 'react';
 import { getBlogList, getUserList } from '../../api/request';
-import { Button } from 'antd';
+import { Button, message } from 'antd';
 import { connect } from "react-redux";
 
 interface IState {
@@ -33,6 +33,10 @@ class Home extends React.Component<{ Logout?: any }, IState> {
         console.log('logout');
         this.props.Logout();
         sessionStorage.setItem('login', '0');
+        message.info('log out')
+        setTimeout(() => {
+            window.location.reload();
+        }, 2000)
     }
 
     render() {

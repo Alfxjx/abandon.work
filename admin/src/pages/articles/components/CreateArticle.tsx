@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import marked from 'marked';
 import hljs from "highlight.js";
 import 'highlight.js/styles/monokai-sublime.css';
-import { Row, Col, Input, Button, Select, Upload } from 'antd';
+import { Row, Col, Input, Button, Select, Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import './CreateArticle.css';
 import { postNewBlog } from "../../../api/request";
@@ -75,7 +75,13 @@ export default function CreateArticle() {
             promote: false,
             picture: titlePicContent
         }
-        postNewBlog(submitObj)
+        postNewBlog(submitObj).then((res: any) => {
+            if (res.status === 200) {
+                message.info(res.message);
+            }
+        }).catch(err=>{
+            message.error('new post created failed')
+        })
     }
 
     const uploadProps = {

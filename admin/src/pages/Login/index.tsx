@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col, message } from 'antd';
 import './index.css';
 import { postLogin } from "../../api/request";
 import { connect } from "react-redux";
@@ -18,23 +18,27 @@ const Login: React.FC = (props: any) => {
     const onFinish = (values: any) => {
         console.log('Success:', values);
         const { username, password } = values;
-        let status, token, message, nameValue;
+        let status, token, resMessage, nameValue;
         postLogin({ username: username, password: password }).then((res: any) => {
             status = res.status;
             token = res.post.token;
-            message = res.message;
+            resMessage = res.message;
             nameValue = res.post.username;
-            return { status, token, message, nameValue }
+            return { status, token, resMessage, nameValue }
         }).then(res => {
-            console.log(res.status)
+            // console.log(res.status)
             if (res.status === 1) {
                 props.Login();
                 sessionStorage.setItem('login', '1');
                 sessionStorage.setItem('username', res.nameValue)
                 localStorage.setItem('jwt', res.token);
+                // message.info(res.resMessage);
             } else {
                 props.Logout();
             }
+            message.info(res.resMessage);
+        }).catch(err=>{
+            message.error('wrong password/user');
         });
 
     };
