@@ -1,4 +1,4 @@
-import { axiosInstance, axiosPicInstance, axiosLoginInstance } from "./config";
+import { axiosInstance, axiosPicInstance, axiosLoginInstance, axiosDelInstance } from "./config";
 import qs from 'qs';
 
 export const getBlogList = () => {
@@ -23,5 +23,5 @@ export const postNewBlog = (blog: any) => {
 }
 
 export const deleteOneBlog = (id: string) => {
-    return axiosLoginInstance.delete('/blog', { params: { postID: id } })
+    return axiosDelInstance.delete('/blog/delete', { params: { postID: id } })
 }

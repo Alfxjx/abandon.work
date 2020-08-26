@@ -29,6 +29,12 @@ const axiosLoginInstance = axios.create({
         // 'Access-Control-Request-Headers':'Authorization'
     }
 })
+const axiosDelInstance = axios.create({
+    baseURL: baseUrl,
+    headers: {
+        'Authorization': `${localStorage.getItem('jwt')}` || '',
+    }
+})
 
 axiosInstance.interceptors.response.use(
     res => res.data,
@@ -51,8 +57,16 @@ axiosLoginInstance.interceptors.response.use(
     }
 );
 
+axiosDelInstance.interceptors.response.use(
+    res => res.data,
+    err => {
+        console.log(err, "网络错误");
+    }
+);
+
 export {
     axiosInstance,
     axiosPicInstance,
-    axiosLoginInstance
+    axiosLoginInstance,
+    axiosDelInstance
 };

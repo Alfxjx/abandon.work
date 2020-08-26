@@ -21,11 +21,14 @@ export default class ArticlesTable extends React.Component {
         message.info('编辑成功')
     }
     handleDelete(_id: string) {
-        console.log(_id)
-        // FIXME 404
+        console.log(`_id: ${_id}`)
         deleteOneBlog(_id).then((res: any) => {
-            if (res && res.status === 200) {
-                message.info(`${res.post.title}-${res.message}`);
+            if (res) {
+                if (res.status === 200) {
+                    message.info(`${res.post.title}-${res.message}`);
+                } else {
+                    message.error('response error ' + res.status)
+                }
             } else {
                 message.error('no response')
             }
