@@ -2,11 +2,13 @@ import React from 'react';
 import { Table, Tag, message, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { getBlogList, deleteOneBlog } from "../../../api/request";
+import { EditDelItem } from "./EditDelItem";
+
 const { confirm } = Modal;
 export default class ArticlesTable extends React.Component {
     state = {
         data: [],
-        selectedKeys: -1
+        selectedKeys: 0
     }
     componentDidMount() {
         getBlogList().then((res: any) => {
@@ -18,32 +20,16 @@ export default class ArticlesTable extends React.Component {
     handleEdit() {
         message.info('编辑成功')
     }
-    handleDelete() {
-        // let _this = this;
-        confirm({
-            title: '确认删除',
-            icon: <ExclamationCircleOutlined />,
-            content: '确认删除此文章吗',
-            onOk: () => {
-                // FIXME 
-                console.log(this) // undefined
-                let id = this.state.selectedKeys;
-                if (id < 0) {
-                    message.warn('请先选择一下文章');
-                } else {
-                    deleteOneBlog(id.toString()).then((res: any) => {
-                        if (res.status === 200) {
-                            message.info(`${res.post.title}-${res.message}`);
-                        }
-                    })
-                    // message.info('已删除')
-                }
-            },
-            onCancel() {
-                message.info('已取消')
-            },
+    handleDelete(_id: string) {
+        console.log(_id)
+        // FIXME 404
+        deleteOneBlog(_id).then((res: any) => {
+            if (res && res.status === 200) {
+                message.info(`${res.post.title}-${res.message}`);
+            } else {
+                message.error('no response')
+            }
         })
-
     }
     render() {
         const columns = [
@@ -94,10 +80,11 @@ export default class ArticlesTable extends React.Component {
                 dataIndex: '',
                 key: 'actions',
                 render: () => (
-                    <p>
-                        <a style={{ marginRight: '5px' }} onClick={this.handleEdit}>Edit</a>
-                        <a style={{ color: 'red' }} onClick={this.handleDelete}> Delete</a>
-                    </p>
+                    <EditDelItem
+                        id={this.state.selectedKeys}
+                        data={this.state.data}
+                        deletePost={this.handleDelete.bind(this)}
+                    />
                 )
             }
         ];
@@ -133,11 +120,6 @@ export default class ArticlesTable extends React.Component {
                     rowSelection={{
                         type: "radio",
                         ...rowSelection
-                    }}
-                    onRow={record => {
-                        return {
-                            onClick: e => { }
-                        }
                     }}
                 >
                 </Table>
