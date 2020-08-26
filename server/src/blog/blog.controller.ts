@@ -66,7 +66,7 @@ export class BlogController {
     });
   }
 
-  @Delete('/delete')
+  @Post('/delete')
   async deletePost(
     @Res() res,
     @Query('postID', new ValidateObjectId()) postID,
