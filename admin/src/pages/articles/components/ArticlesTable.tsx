@@ -20,12 +20,15 @@ export default class ArticlesTable extends React.Component {
     handleEdit() {
         message.info('编辑成功')
     }
+    // 删除文章
     handleDelete(_id: string) {
         console.log(`_id: ${_id}`)
         deleteOneBlog(_id).then((res: any) => {
             if (res) {
                 if (res.status === 200) {
                     message.info(`${res.post.title}-${res.message}`);
+                    // TODO uncomment
+                    // window.location.reload();
                 } else {
                     message.error('response error ' + res.status)
                 }
@@ -98,7 +101,8 @@ export default class ArticlesTable extends React.Component {
                 title: item.title,
                 author: item.author,
                 description: item.description,
-                date_posted: item.date_posted.match(/^(\d{4}-\d{2}-\d{2})/i)[0],
+                //TODO item.date_posted.match(/^(\d{4}-\d{2}-\d{2})/i)[0]
+                date_posted: item.date_posted,
                 promote: item.promote ? "yes" : "no"
             })
         })

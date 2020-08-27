@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// export const baseUrl: string = 'http://www.abandon.work/api';
 export const baseUrl: string = 'http://localhost:3000/api';
 
 

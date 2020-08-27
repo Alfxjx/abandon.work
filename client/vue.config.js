@@ -61,7 +61,7 @@ if (process.env.NODE_ENV === 'test') {
 	webpackConfig['devServer'] = {
 		proxy: {
 			'/api': {
-        target: 'http://127.0.0.1:6324',
+        target: 'http://127.0.0.1:6000',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/api': '',
@@ -75,7 +75,7 @@ if (process.env.NODE_ENV === 'huidu') {
 	webpackConfig['devServer'] = {
 		proxy: {
 			'/api': {
-        // target: 'http://127.0.0.1:6324',
+        // target: 'http://127.0.0.1:6000',
         target: 'http://abandon.work/api',
 				changeOrigin: true,
 				pathRewrite: {

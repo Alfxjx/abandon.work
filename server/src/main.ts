@@ -10,7 +10,7 @@ async function bootstrap() {
     allowedHeaders: 'Authorization',
     preflightContinue: false,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
-    origin: ['http://www.abandon.work/api', 'http://localhost:6324', 'http://localhost:3000']
+    origin: ['http://www.abandon.work/api', 'http://localhost:6000', 'http://localhost:3000']
   });
   // set static path like .png or .pdf
   app.use('/public', serveStatic(join(__dirname, '../public'), {
@@ -18,6 +18,6 @@ async function bootstrap() {
     maxAge: '1d',
     extensions: ['jpg', 'jpeg', 'png', 'gif'],
   }))
-  await app.listen(6324);
+  await app.listen(6000);
 }
 bootstrap();
