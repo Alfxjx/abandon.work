@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-export const baseUrl: string = 'http://localhost:3000/api';
+const { NODE_ENV } = process.env
+
+export const baseUrl: string = NODE_ENV === 'development' ? 'http://localhost:3000/api' : (NODE_ENV === 'production' ? 'http://www.abandon.work/api' : '');
 
 
 //axios 的实例及拦截器配置

@@ -54,7 +54,7 @@ export class BlogController {
   @Patch('/edit')
   async editPost(
     @Res() res,
-    @Query('postID', new ValidateObjectId()) postID,
+    @Query('postID') postID,
     @Body() createPostDTO: CreatePostDTO,
   ) {
     const editedPost = await this.blogService.editPost(postID, createPostDTO);
@@ -69,8 +69,8 @@ export class BlogController {
   @Delete('/delete')
   async deletePost(
     @Res() res,
-    // FIXME  400 error
-    @Query('postID', new ValidateObjectId()) postID,
+    // TODO 删除了id validator
+    @Query('postID') postID,
   ) {
     const deletedPost = await this.blogService.deletePost(postID);
     if (!deletedPost) throw new NotFoundException('Post does not exist!');

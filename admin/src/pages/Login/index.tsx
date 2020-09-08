@@ -38,7 +38,7 @@ const Login: React.FC = (props: any) => {
             }
             message.info(res.resMessage);
         }).catch(err=>{
-            message.error('wrong password/user');
+            message.error('fail to login');
         });
 
     };
