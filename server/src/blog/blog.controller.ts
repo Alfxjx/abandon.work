@@ -18,15 +18,15 @@ import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
 
 @Controller('blog')
 export class BlogController {
-  constructor(private blogService: BlogService) {}
+  constructor(private blogService: BlogService) { }
 
   @Get('')
   async getPosts(@Res() res) {
     const posts = await this.blogService.getPosts();
-    if(!posts) throw new NotFoundException('Posts find failed!');
+    if (!posts) throw new NotFoundException('Posts find failed!');
     return res.status(HttpStatus.OK).json({
-      status:HttpStatus.OK,
-      data:posts
+      status: HttpStatus.OK,
+      data: posts
     });
   }
 
@@ -35,17 +35,17 @@ export class BlogController {
     const post = await this.blogService.getPost(postID);
     if (!post) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
-      status:HttpStatus.OK,
-      data:post
+      status: HttpStatus.OK,
+      data: post
     });
   }
 
   @Post('/')
   async addPost(@Res() res, @Body() createPostDTO: CreatePostDTO) {
     const newPost = await this.blogService.addPost(createPostDTO);
-    if(!newPost) throw new NotFoundException('创建失败');
+    if (!newPost) throw new NotFoundException('创建失败');
     return res.status(HttpStatus.OK).json({
-      status:HttpStatus.OK,
+      status: HttpStatus.OK,
       message: 'Post has been submitted successfully!',
       data: newPost,
     });
@@ -54,13 +54,13 @@ export class BlogController {
   @Patch('/edit')
   async editPost(
     @Res() res,
-    @Query('postID') postID,
+    @Query('postID', new ValidateObjectId()) postID,
     @Body() createPostDTO: CreatePostDTO,
   ) {
     const editedPost = await this.blogService.editPost(postID, createPostDTO);
     if (!editedPost) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
-      status:HttpStatus.OK,
+      status: HttpStatus.OK,
       message: 'Post has been successfully updated',
       post: editedPost,
     });
@@ -70,12 +70,12 @@ export class BlogController {
   async deletePost(
     @Res() res,
     // TODO 删除了id validator
-    @Query('postID') postID,
+    @Query('postID', new ValidateObjectId()) postID,
   ) {
     const deletedPost = await this.blogService.deletePost(postID);
     if (!deletedPost) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
-      status:HttpStatus.OK,
+      status: HttpStatus.OK,
       message: 'Post has been deleted!',
       post: deletedPost,
     });
