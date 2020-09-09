@@ -11,6 +11,7 @@ import {
   Put,
   Patch,
   Delete,
+  Logger,
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreatePostDTO } from './dto/create-post.dto';
@@ -19,6 +20,8 @@ import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
 @Controller('blog')
 export class BlogController {
   constructor(private blogService: BlogService) { }
+
+  private readonly logger = new Logger();
 
   @Get('')
   async getPosts(@Res() res) {
@@ -72,6 +75,7 @@ export class BlogController {
     // TODO 删除了id validator
     @Query('postID', new ValidateObjectId()) postID,
   ) {
+    this.logger.log(typeof postID)
     const deletedPost = await this.blogService.deletePost(postID);
     if (!deletedPost) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
