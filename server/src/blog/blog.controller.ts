@@ -54,10 +54,10 @@ export class BlogController {
     });
   }
 
-  @Patch('/edit/:postID')
+  @Patch('/edit')
   async editPost(
     @Res() res,
-    @Param('postID', new ValidateObjectId()) postID,
+    @Query('postID', new ValidateObjectId()) postID,
     @Body() createPostDTO: CreatePostDTO,
   ) {
     const editedPost = await this.blogService.editPost(postID, createPostDTO);
@@ -72,8 +72,8 @@ export class BlogController {
   @Delete('/delete/:postID')
   async deletePost(
     @Res() res,
-    // TODO 删除了id validator
-    @Param('postID', new ValidateObjectId()) postID,
+    // TODO 改回Query
+    @Query('postID', new ValidateObjectId()) postID,
   ) {
     this.logger.log(typeof postID)
     const deletedPost = await this.blogService.deletePost(postID);
