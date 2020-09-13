@@ -23,5 +23,5 @@ export const postNewBlog = (blog: any) => {
 }
 
 export const deleteOneBlog = (id: string) => {
-    return axiosDelInstance.delete('/blog/delete', { params: { postID: id } })
+    return axiosDelInstance.delete(`/blog/delete/${id}`)
 }
