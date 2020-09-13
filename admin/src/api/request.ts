@@ -5,6 +5,10 @@ export const getBlogList = () => {
     return axiosInstance.get('/blog');
 }
 
+export const getBlogById = (id:string)=>{
+  return axiosInstance.get(`blog/${id}`);
+}
+
 export const getUserList = () => {
     return axiosInstance.get('/user');
 }

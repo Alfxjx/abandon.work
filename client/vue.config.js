@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === 'huidu') {
 		proxy: {
 			'/api': {
         // target: 'http://127.0.0.1:6000',
-        target: 'http://abandon.work/api',
+        target: 'http://www.abandon.work/api',
 				changeOrigin: true,
 				pathRewrite: {
 					'^/api': '',

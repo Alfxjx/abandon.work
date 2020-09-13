@@ -5,18 +5,18 @@ module.exports = function (app) {
         createProxyMiddleware(
             '/api',
             // dev
-            {
+          /*   {
                 target: 'http://localhost:6000',
                 changeOrigin: true,
                 pathRewrite: {
                     '/api': ''
                 }
-            },
+            }, */
             // prod
-           /*  {
+            {
                 target:'http://www.abandon.work',
                 changeOrigin: true,
-            } */
+            }
         )
     );
 
