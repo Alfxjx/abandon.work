@@ -73,14 +73,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../var.scss';
+@import "../../var.scss";
 .links {
-	margin-top: 10px;
-	width: 300px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	margin-top: 10px;
 	padding-bottom: 10px;
+	width: 300px;
 }
 
 .icon:hover {

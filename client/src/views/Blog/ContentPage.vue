@@ -43,8 +43,8 @@ export default {
 
 <style scoped lang="scss">
 .content-wrapper {
-  .content-page{
-    margin-top: 80px;
-  }
+	.content-page {
+		margin-top: 80px;
+	}
 }
 </style>

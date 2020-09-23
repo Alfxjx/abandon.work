@@ -58,16 +58,16 @@ export default {
 $color: #222;
 
 .loading {
+	display: flex;
 	position: fixed;
 	left: 0;
 	top: 0;
-	display: flex;
 	flex-direction: column;
-	width: 100%;
-	height: 100vh;
-	background: #ffffff;
 	justify-content: center;
 	align-items: center;
+	width: 100%;
+	height: 100vh;
+	background: #fff;
 	svg path,
 	svg rect {
 		fill: #222;

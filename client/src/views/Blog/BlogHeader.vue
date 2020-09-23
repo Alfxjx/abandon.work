@@ -31,18 +31,18 @@ export default {
 
 <style scoped lang="scss">
 .blog-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-  z-index: 99;
-	width: 100vw;
-	height: 60px;
-  background: #fff;
 	display: flex;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 99;
 	flex-direction: row;
 	align-items: center;
 	padding: 0;
-	box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
+	width: 100vw;
+	height: 60px;
+	background: #fff;
+	box-shadow: 0 1px 0 0 rgba(0, 0, 0, .1);
 	font-size: 1.1em;
 	.blog-section {
 		display: flex;
@@ -51,16 +51,16 @@ export default {
 	.blog-func {
 		margin: 0 0 0 2em;
 		.about {
-			margin: 0 0 0 0.5em;
+			margin: 0 0 0 .5em;
 		}
 	}
 	.float-right {
 		position: absolute;
-		top: 50%;
 		right: 1.07%;
+		top: 50%;
 		transform: translate(0, -50%);
 		.admin {
-			margin: 0 0 0 0.5em;
+			margin: 0 0 0 .5em;
 		}
 	}
 }

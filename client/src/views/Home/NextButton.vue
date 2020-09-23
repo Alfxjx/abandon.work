@@ -66,18 +66,19 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import '../../var.scss';
+@import "../../var.scss";
 .next-button {
+	display: flex;
 	position: absolute;
 	bottom: 5%;
-	width: 40px;
-	height: 40px;
-	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: $black;
 	border-radius: 50%;
-	// 3sec infinite
+	width: 40px;
+	height: 40px;
+	background: $black;
+
+// 3sec infinite
 	animation: blink 3s infinite;
 	// &:hover {
 	// 	background: $yellow;
@@ -89,6 +90,7 @@ export default {
 	.icon {
 		width: 30px;
 		height: 30px;
+
 		fill: $yellow;
 	}
 }

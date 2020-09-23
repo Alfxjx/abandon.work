@@ -67,53 +67,54 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../var.scss';
+@import "../../var.scss";
 $border: 1rem;
 .blog-main {
-	width: 100%;
 	// height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
+	width: 100%;
 	.blog-list {
-		padding-top: 20px;
 		display: flex;
 		flex-wrap: wrap;
+		padding-top: 20px;
 		.blog-wrapper {
-			color: $white;
-			position: relative;
-			width: 18rem;
-			height: 12rem;
-			// border: 1px solid #777;
-			border-radius: $border;
-			margin: 10px;
 			display: flex;
+			position: relative;
 			flex-direction: column;
 			align-items: flex-start;
+			margin: 10px;
 			padding: 20px;
+
+// border: 1px solid #777;
+			border-radius: $border;
+			width: 18rem;
+			height: 12rem;
 			background-size: 100% 100%;
+			color: $white;
 			&::before {
 				position: absolute;
-				top: 0;
 				left: 0;
+				top: 0;
+				border-radius: $border;
 				width: 100%;
 				height: 100%;
-				content: '';
-				opacity: 0.4;
-				border-radius: $border;
 				background-image: linear-gradient(234deg, #394245, #000);
+				opacity: .4;
+				content: "";
 			}
 			.card-wrapper {
-				cursor: pointer;
-				position: relative;
 				display: flex;
+				position: relative;
 				flex-direction: column;
 				width: 100%;
 				height: 100%;
+				cursor: pointer;
 				.title {
 					margin: 30px 0;
-					font-size: 28px;
 					font-weight: 500;
+					font-size: 28px;
 				}
 				.card-header {
 					display: flex;
@@ -130,15 +131,15 @@ $border: 1rem;
 					position: absolute;
 					left: 0;
 					bottom: -8px;
-					height: 20px;
-					font-size: 14px;
-					font-weight: 500;
-					line-height: 20px;
 					padding: 0 5px;
 					border-radius: 10px;
+					height: 20px;
+					line-height: 20px;
+					font-weight: 500;
+					font-size: 14px;
 					&:hover {
-						color: #000;
 						background: #fff;
+						color: #000;
 					}
 				}
 			}

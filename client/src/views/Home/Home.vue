@@ -73,11 +73,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../var.scss';
+@import "../../var.scss";
 $footer-height: 30px;
 .main {
-	position: relative;
 	display: flex;
+	position: relative;
 	flex-direction: column;
 	justify-content: top;
 	align-items: center;
@@ -86,65 +86,65 @@ $footer-height: 30px;
 	transition: scrollTop 1s ease;
 	.blog-wrapper {
 		.main-part {
-			position: relative;
 			// flex: 1;
 			display: flex;
+			position: relative;
 			flex-direction: column;
 			align-items: center;
 			width: 100%;
 			height: 100vh;
 			.header {
-				width: 100%;
-				height: 60px;
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
+				width: 100%;
+				height: 60px;
 				.header-title {
-					font-family: 'BETTALIA';
+					margin: 10px 25px;
 					height: 40px;
 					line-height: 40px;
-					color: $grey-white;
-					font-size: 22px;
+					font-family: "BETTALIA";
 					font-weight: 600;
-					margin: 10px 25px;
+					font-size: 22px;
+					color: $grey-white;
 				}
 				.blog {
-					width: 75px;
-					text-align: center;
 					border-radius: 20px;
+					width: 75px;
 					background: #222;
+					text-align: center;
 					&:hover {
+						background: $yellow;
 						cursor: pointer;
 						color: $blue;
-						background: $yellow;
 					}
 				}
 			}
 		}
 	}
 	footer {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		flex: 0 0 100px;
 		width: 100%;
 		height: $footer-height;
 		background: $yunshanlv;
 		color: $minghui;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 	}
 }
 .title {
 	margin-bottom: 10px;
 	padding-top: 2em;
+	font-family: "BETTALIA", sans-serif;
 	font-weight: 700;
-	font-family: 'BETTALIA', sans-serif;
 	font-size: 4em;
 	color: $grey-white;
 }
 .hint {
-	color: $grey-white;
 	font-family: sans-serif;
+	color: $grey-white;
 }
 a {
 	text-decoration: none;
@@ -158,8 +158,8 @@ a:hover {
 }
 
 @font-face {
-	font-family: 'BETTALIA';
-	src: url('../../assets/font/BETTALIA.ttf');
+	src: url("../../assets/font/BETTALIA.ttf");
+	font-family: "BETTALIA";
 }
 .icon:hover {
 	fill: $blue;
