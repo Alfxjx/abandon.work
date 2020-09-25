@@ -6,6 +6,8 @@ const path = require('path');
 // put static file out of public to solve hmr hot.update.json
 const basePath = path.join(__dirname, 'mock');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require("compression-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 // 生产环境配置cdn
 let cdn = {
@@ -101,7 +103,15 @@ if (process.env.NODE_ENV === 'production') {
 			'vue-router': 'VueRouter',
 			axios: 'axios',
 		};
+		config["optimization"].minimizer.push(new UglifyJsPlugin());
 		config['plugins'].push(new BundleAnalyzerPlugin());
+		config["plugins"].push(
+			new CompressionPlugin({
+                test: /\.js$|\.css$/,
+                threshold: 10240,
+                deleteOriginalAssets: false
+			})
+		);
 	};
 }
 
