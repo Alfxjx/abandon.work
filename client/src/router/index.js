@@ -1,28 +1,16 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Home from '../views/Home/Home.vue';
-import Test from '../views/test.vue';
-// import Blog from "../views/Blog/Blog.vue";
-// import ContentPage from '../views/Blog/ContentPage.vue';
-// import Tech from "../views/Blog/Tech.vue";
-const ContentPage = () => import(/* webpackChunkName: "group-blog" */ '../views/Blog/ContentPage.vue');
+import BlogList from '../views/Blog/index.vue';
+// const ContentPage = () => import(/* webpackChunkName: "group-blog" */ '../views/Blog/Blog.vue');
 Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/about',
-		name: 'test',
-		component: Test,
-	},
-	{
 		path: '/',
-		name: 'home',
-		component: Home,
+		name: 'blog',
+		component: BlogList,
 	},
-	{
-		path: '/:id',
-		component: ContentPage,
-	},
+	
 ];
 
 const router = new VueRouter({

@@ -2,7 +2,7 @@ import axios from 'axios';
 import Vue from 'vue';
 const { NODE_ENV } = process.env;
 
-export const baseUrl = NODE_ENV === 'development' ? 'http://localhost:3000/api' : 'http://www.abandon.work/api';
+export const baseUrl = NODE_ENV === 'development' ? 'http://localhost:8080/api' : 'http://www.abandon.work/api';
 
 //axios 的实例及拦截器配置
 const axiosInstance = axios.create({
