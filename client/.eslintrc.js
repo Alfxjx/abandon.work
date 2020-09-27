@@ -12,6 +12,7 @@ module.exports = {
 		"vue/html-indent": 0,
 		"vue/name-property-casing": 0,
 		"vue/require-prop-types": 0,
+		"vue/html-self-closing": 0,
 	},
 	parserOptions: {
 		parser: "babel-eslint",
