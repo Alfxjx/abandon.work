@@ -33,7 +33,7 @@ export default {
 	methods: {
 		getData() {
 			getBlogList().then((res) => {
-				this.bloglist = res.data.data;
+				this.bloglist = res.data;
 				this.status = res.status;
         console.log(this.bloglist);
 			});
