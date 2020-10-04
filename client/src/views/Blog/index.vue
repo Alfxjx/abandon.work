@@ -36,17 +36,14 @@
 				</div>
 			</li>
 		</ul>
-		<core-button />
 	</div>
 </template>
 
 <script>
 import { getBlogList } from "../../http/request.js";
-import { CoreButton } from "../../plugins/index.js";
 
 export default {
 	name: "blog-list",
-	components: { "core-button": CoreButton },
 	props: {},
 	data() {
 		return {
