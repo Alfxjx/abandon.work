@@ -1,22 +1,5 @@
 <template>
-	<div class="blog-list">
-		<div class="header">
-			<a
-				href="http://www.abandon.work/admin"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				admin
-			</a>
-			<a
-				href="https://gitee.com/alfxjx/abandon.work"
-				target="_blank"
-				rel="noopener noreferrer"
-			>
-				source
-			</a>
-		</div>
-		<h1 class="blog-title">abandon.work</h1>
+	<div class="blog-list-wrapper">
 		<ul class="blog-list" v-if="bloglist.length !== 0">
 			<li class="blog-list-item" v-for="(item, index) in bloglist" :key="index">
 				<div class="item-info">
@@ -73,29 +56,13 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../../styles/var.scss";
-// TODO cannot import this font ttf file
 // @import '../../styles/font.scss';
-.header {
-	position: absolute;
-	left: 0;
-	top: 0;
-	padding: 1rem 0;
-	width: 100vw;
-	height: 1rem;
-	text-align: right;
-	a{
-		margin-right: 1rem;
-	}
-}
 .blog-list {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	.blog-title {
-		font-family: "BETTALIA";
-		color: $blue;
-	}
+	flex: 1;
+	margin: 0 3em;
 	.blog-list-item {
 		display: flex;
 		flex-direction: column;
@@ -121,9 +88,5 @@ export default {
 			}
 		}
 	}
-}
-@font-face {
-	src: url("../../assets/font/BETTALIA.ttf");
-	font-family: "BETTALIA";
 }
 </style>

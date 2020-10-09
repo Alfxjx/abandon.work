@@ -22,7 +22,11 @@ axiosInstance.interceptors.request.use(
 	function(config) {
 		// 在发送请求之前做些什么
 		Vue.prototype.$loading.show();
-		store.commit("addHttpStatus", `request ${config.method} ${config.url}`);
+		store.commit("addHttpStatus", {
+			type: "request",
+			method: config.method,
+			url: config.url,
+		});
 		return config;
 	},
 	function(error) {
@@ -35,10 +39,11 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
 	function(response) {
 		// 对响应数据做点什么
-		store.commit(
-			"addHttpStatus",
-			`response ${response.status} ${response.statusText}`
-		);
+		store.commit("addHttpStatus", {
+			type: "response",
+			status: response.status,
+			statusText: response.statusText,
+		});
 		Vue.prototype.$loading.hide();
 		return response.data;
 	},
