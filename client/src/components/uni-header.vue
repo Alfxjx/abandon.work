@@ -6,7 +6,7 @@
 			</v-app-bar-nav-icon>
 
 			<v-toolbar-title class="blog-title" @click="goHome()">
-                abandon.work
+				abandon.work
 			</v-toolbar-title>
 		</v-app-bar>
 		<v-navigation-drawer v-model="drawer" absolute temporary>
@@ -60,14 +60,18 @@ export default {
 @import "../styles/var.scss";
 .blog-title {
 	font-size: 1.5rem;
-	font-family: "BETTALIA";
+	font-family: "open sans";
 	color: $indigo;
 }
-.router-link{
-    text-decoration: none;
+.router-link {
+	text-decoration: none;
 }
 @font-face {
 	src: url("../assets/font/BETTALIA.ttf");
 	font-family: "BETTALIA";
+}
+@font-face {
+	src: url("../assets/font/Open-Sans-2.ttf");
+	font-family: "open sans";
 }
 </style>
