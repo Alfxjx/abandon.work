@@ -22,6 +22,10 @@ export const postNewPicture = (picture: any) => {
     return axiosPicInstance.post('/picture', picture);
 }
 
+export const getPictureList = ()=>{
+    return axiosInstance.get('/picture');
+}
+
 export const postNewBlog = (blog: any) => {
     return axiosLoginInstance.post('/blog', qs.stringify(blog))
 }
