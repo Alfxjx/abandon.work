@@ -19,6 +19,7 @@ let cdn = {
 		"//cdn.bootcss.com/vuex/3.1.2/vuex.min.js",
 		"//cdn.bootcss.com/axios/0.19.0/axios.min.js",
 		"//cdn.bootcdn.net/ajax/libs/marked/1.1.1/marked.min.js",
+		"//cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js",
 	],
 };
 
@@ -88,6 +89,7 @@ if (process.env.NODE_ENV === "production") {
 			"vue-router": "VueRouter",
 			axios: "axios",
 			marked: "marked",
+			vuetify: "Vuetify",
 		};
 		config["optimization"].minimizer.push(new UglifyJsPlugin());
 		config["plugins"].push(new BundleAnalyzerPlugin());

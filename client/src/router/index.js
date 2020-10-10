@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import BlogList from "../views/Blog/index.vue";
+import BlogList from "../views/Blog/blog-list.vue";
 import BlogContent from "../views/Blog/contents.vue";
 // const ContentPage = () => import(/* webpackChunkName: "group-blog" */ '../views/Blog/Blog.vue');
 Vue.use(VueRouter);
