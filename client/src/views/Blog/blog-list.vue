@@ -38,28 +38,28 @@ export default {
 				console.log(this.bloglist);
 			});
 		},
-		goDetails(id) {
-			this.$router.push(`/blog/${id}`);
-		},
 	},
 };
 </script>
 
 <style scoped lang="scss">
 @import "@/styles/var.scss";
-.blog-list {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	flex: 1;
-	margin: 0 3em;
-	.blog-list-item {
+.blog-list-wrapper {
+	padding-top: 50px;
+	.blog-list {
 		display: flex;
 		flex-direction: column;
-		margin: 1rem 0;
-		// border-bottom: 1px solid $blue;
-		// width: 75vw;
-		// min-width: 350px;
+		align-items: center;
+		flex: 1;
+		margin: 0 3em;
+		.blog-list-item {
+			display: flex;
+			flex-direction: column;
+			margin: 1rem 0;
+			// border-bottom: 1px solid $blue;
+			// width: 75vw;
+			// min-width: 350px;
+		}
 	}
 }
 </style>

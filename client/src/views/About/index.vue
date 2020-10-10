@@ -1,6 +1,6 @@
 <template>
   <div class="about-page">
-
+    about me
   </div>
 </template>
 
@@ -21,5 +21,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .about-page{}
+  .about-page{
+    height: 100vh;
+  }
 </style>

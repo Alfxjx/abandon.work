@@ -1,50 +1,30 @@
 <template>
 	<v-app>
 		<div id="app">
-			<span class="blog-title" @click="goHome()">abandon.work</span>
+			<uni-header></uni-header>
 			<router-view></router-view>
+			<uni-footer></uni-footer>
 		</div>
 	</v-app>
 </template>
 
 <script>
+import UniHeader from "./components/uni-header.vue";
+import UniFooter from "./components/uni-footer.vue";
 export default {
-	methods: {
-		goHome() {
-			// console.log(this.$route.path)
-			if (this.$route.path !== "/") {
-				this.$router.push("/");
-			}
-		},
+	components: {
+		"uni-header": UniHeader,
+		"uni-footer": UniFooter,
 	},
 };
 </script>
 
 <style lang="scss">
-@import "./styles/var.scss";
 @import "./styles/common.scss";
 #app {
 	display: flex;
 	position: relative;
-	flex-direction: row;
+	flex-direction: column;
 	height: 100vh;
-	.blog-title {
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 200px;
-		background: #fff;
-		cursor: pointer;
-		line-height: 50px;
-		text-align: center;
-		font-size: 1.5rem;
-		font-family: "BETTALIA";
-		color: $blue;
-	}
-}
-
-@font-face {
-	src: url("./assets/font/BETTALIA.ttf");
-	font-family: "BETTALIA";
 }
 </style>

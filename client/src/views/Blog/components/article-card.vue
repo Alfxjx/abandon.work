@@ -21,6 +21,11 @@
 <script>
 export default {
 	props: ["item"],
+	methods: {
+		goDetails(id) {
+			this.$router.push(`/blog/${id}`);
+		},
+	},
 };
 </script>
 
