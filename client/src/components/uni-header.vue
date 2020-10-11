@@ -17,7 +17,7 @@
 				>
 					<v-list-item>
 						<v-list-item-title>
-							<router-link class="router-link" to="/">主页</router-link>
+							<router-link class="router-link" to="/home">主页</router-link>
 						</v-list-item-title>
 					</v-list-item>
 					<v-list-item>
