@@ -5,7 +5,7 @@
 				<v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 			</v-app-bar-nav-icon>
 
-			<v-toolbar-title class="blog-title" @click="goHome()">
+			<v-toolbar-title class="blog-title" @click="goto('/')">
 				abandon.work
 			</v-toolbar-title>
 		</v-app-bar>
@@ -16,18 +16,37 @@
 					active-class="deep-purple--text text--accent-4"
 				>
 					<v-list-item>
-						<v-list-item-title>
-							<router-link class="router-link" to="/home">主页</router-link>
+						<v-list-item-title @click="goto('/')">
+							主页
 						</v-list-item-title>
 					</v-list-item>
 					<v-list-item>
-						<v-list-item-title>
-							<router-link class="router-link" to="/about">关于我</router-link>
+						<v-list-item-title @click="goto('/about')">
+							关于我
+						</v-list-item-title>
+					</v-list-item>
+					<v-list-item>
+						<v-list-item-title @click="goto('/todo')">
+							TODO list
 						</v-list-item-title>
 					</v-list-item>
 				</v-list-item-group>
 			</v-list>
 		</v-navigation-drawer>
+		<v-snackbar v-model="snackbar">
+			{{ text }}
+			<template v-slot:action="{ attrs }">
+				<v-btn
+					color="indigo"
+					text
+					v-bind="attrs"
+					@click="snackbar = false"
+					:timeout="2200"
+				>
+					退下
+				</v-btn>
+			</template>
+		</v-snackbar>
 	</div>
 </template>
 
@@ -38,6 +57,8 @@ export default {
 			indigo: "#5c6bc0",
 			drawer: false,
 			group: null,
+			snackbar: false,
+			text: "憋点了，现在就是这个路由",
 		};
 	},
 	methods: {
@@ -45,6 +66,13 @@ export default {
 			// console.log(this.$route.path)
 			if (this.$route.path !== "/") {
 				this.$router.push("/");
+			}
+		},
+		goto(url) {
+			if (this.$route.path !== url) {
+				this.$router.push(url);
+			} else {
+				this.snackbar = true;
 			}
 		},
 	},
