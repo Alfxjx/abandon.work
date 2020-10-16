@@ -8,15 +8,15 @@ import { CreatePostDTO } from './dto/create-post.dto';
 export class BlogService {
   constructor(@InjectModel('Post') private readonly postModel: Model<Post>) {}
 
-  async getPosts(): Promise<Post[]> {
+  async getPosts(query: any): Promise<Post[]> {
     // TODO find的第二个参数是filter是一个对象,
-    const posts = await this.postModel.find({}, { body: 0 });
+    const posts = await this.postModel.find(query, { body: 0 });
     return posts;
   }
 
   async getPost(postID): Promise<Post> {
     const post = await this.postModel
-    // 不显示description了
+      // 不显示description了
       .findById(postID, { description: 0 })
       .exec();
     return post;

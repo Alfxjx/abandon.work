@@ -24,8 +24,8 @@ export class BlogController {
   private readonly logger = new Logger();
 
   @Get('')
-  async getPosts(@Res() res) {
-    const posts = await this.blogService.getPosts();
+  async getPosts(@Res() res, @Query() query) {
+    const posts = await this.blogService.getPosts(query);
     if (!posts) throw new NotFoundException('Posts find failed!');
     return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,

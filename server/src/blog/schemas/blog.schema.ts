@@ -8,5 +8,6 @@ export const BlogSchema = new mongoose.Schema({
   body: String,
   date_posted: String,
   picture: String,
+  category: String,
   promote: Boolean,
 });

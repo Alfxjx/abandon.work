@@ -9,4 +9,5 @@ export interface Post extends Document {
   readonly date_posted: string;
   readonly picture: string;
   readonly promote: boolean;
+  readonly category: string;
 }
