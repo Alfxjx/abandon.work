@@ -17,7 +17,8 @@ export class BlogModule implements NestModule {
     consumer.apply(AuthMiddleware).forRoutes(
       { path: 'blog', method: RequestMethod.POST },
       { path: 'blog/edit', method: RequestMethod.PATCH },
-      { path: 'blog/delete', method: RequestMethod.DELETE }
+      { path: 'blog/delete', method: RequestMethod.DELETE },
+      { path: 'blog/like/:postID', method: RequestMethod.POST }
     )
   }
 }

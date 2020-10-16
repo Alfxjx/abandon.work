@@ -54,6 +54,17 @@ export class BlogController {
     });
   }
 
+  @Post('/like/:postID')
+  async likePost(@Res() res, @Param('postID', new ValidateObjectId()) postID){
+    const likePost = await this.blogService.likePost(postID);
+    if(!likePost) throw new NotFoundException('点赞失败，西巴，是不是哪里出了问题');
+    return res.status(HttpStatus.OK).json({
+      status: HttpStatus.OK,
+      message:'点赞成功！',
+      data: likePost
+    })
+  }
+
   @Patch('/edit')
   async editPost(
     @Res() res,

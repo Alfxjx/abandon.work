@@ -10,4 +10,6 @@ export const BlogSchema = new mongoose.Schema({
   picture: String,
   category: String,
   promote: Boolean,
+  viewCount: Number,
+  likeCount: Number
 });

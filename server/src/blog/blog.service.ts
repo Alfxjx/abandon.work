@@ -19,12 +19,26 @@ export class BlogService {
       // 不显示description了
       .findById(postID, { description: 0 })
       .exec();
+    const cnt = await this.postModel.findByIdAndUpdate(postID, {
+      viewCount: post.viewCount + 1,
+    });
+    post.viewCount += 1;
     return post;
   }
 
   async addPost(createPostDTO: CreatePostDTO): Promise<Post> {
     const newPost = await this.postModel(createPostDTO);
     return newPost.save();
+  }
+
+  async likePost(postID){
+    const oldLikes = await this.postModel.findById(postID);
+    const likePost = await this.postModel.findByIdAndUpdate(
+      postID,
+      {likeCount: oldLikes.likeCount + 1},
+      {new: true}
+    );
+    return likePost;
   }
 
   async editPost(postID, createPostDTO: CreatePostDTO): Promise<Post> {

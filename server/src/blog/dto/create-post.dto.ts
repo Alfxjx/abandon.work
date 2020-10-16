@@ -7,4 +7,6 @@ export class CreatePostDTO {
   readonly date_posted: string;
   readonly picture: string;
   readonly promote: boolean;
+  viewCount: number;
+  likeCount: number;
 }

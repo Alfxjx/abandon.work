@@ -10,4 +10,6 @@ export interface Post extends Document {
   readonly picture: string;
   readonly promote: boolean;
   readonly category: string;
+  readonly viewCount: number;
+  readonly likeCount: number;
 }
