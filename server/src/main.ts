@@ -18,6 +18,6 @@ async function bootstrap() {
     maxAge: '1d',
     extensions: ['jpg', 'jpeg', 'png', 'gif'],
   }))
-  await app.listen(6000);
+  await app.listen(6001);
 }
 bootstrap();
