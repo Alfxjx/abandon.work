@@ -4,14 +4,20 @@
       <h1>{{ blog.title }}</h1>
     </div>
     <div class="blog-content">
-      <div id="blogcontent" v-html="dangerouslySetInnerHTML" />
+      <div
+        ref="blogcontent"
+        id="blogcontent"
+        v-html="dangerouslySetInnerHTML"
+        v-highlight
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { getBlogById } from "../../http/request.js";
+import { getBlogById } from "@/http/request.js";
 import marked from "marked";
+
 export default {
   props: ["id"],
   data() {
@@ -43,8 +49,9 @@ export default {
         renderer: new marked.Renderer(),
         gfm: true,
         tables: true,
-        breaks: false,
+        breaks: true,
         pedantic: false,
+        sanitize: true,
         smartLists: true,
         smartypants: false,
       });
@@ -56,6 +63,7 @@ export default {
 <style lang="scss">
 .blog-content-wrapper {
   padding: 1rem;
+  flex: 1;
   .blog-title {
     padding-top: 3rem;
   }
