@@ -13,14 +13,14 @@
 			<span>{{ item.author }}</span>
 			<span>{{ item.date_posted }}</span>
 			<span>{{ item.tags }}</span>
-			<span>{{ item.promote ? '推荐' : '一般' }}</span>
+			<span>{{ item.promote ? "推荐" : "一般" }}</span>
 		</div>
 	</v-card>
 </template>
 
 <script>
 export default {
-	props: ['item'],
+	props: ["item"],
 	methods: {
 		goDetails(id) {
 			this.$router.push(`/blog/${id}`);
@@ -30,21 +30,29 @@ export default {
 </script>
 
 <style lang="scss">
-.item-info {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-}
-.item-bot {
-	display: flex;
-	flex-direction: row;
-	cursor: pointer;
-	.item-img > img {
-		width: 150px;
-		height: 100px;
+.article-card {
+	width: 45rem;
+	.item-info {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
 	}
-	.item-title {
-		flex: 1;
+	.item-bot {
+		display: flex;
+		flex-direction: row;
+		cursor: pointer;
+		.item-img > img {
+			width: 150px;
+			height: 100px;
+		}
+		.item-title {
+			flex: 1;
+		}
+	}
+}
+@media (max-width: 640px) {
+	.article-card{
+		width: 20rem;
 	}
 }
 </style>
