@@ -39,6 +39,7 @@ export default {
 .article-card {
   width: 45rem;
   display: flex;
+  flex-direction: column;
   .item-info {
     display: flex;
     flex-direction: row;
