@@ -45,6 +45,7 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/var.scss";
 .blog-list-wrapper {
+  flex: 1;
   padding-top: 50px;
   .blog-list {
     display: flex;
