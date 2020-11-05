@@ -68,4 +68,7 @@ export default {
     padding-top: 3rem;
   }
 }
+p > img{
+  width: 100%;
+}
 </style>
