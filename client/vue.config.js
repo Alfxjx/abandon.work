@@ -42,6 +42,16 @@ if (process.env.NODE_ENV === "development") {
 		port: 8080, // 端口号
 		https: false, // https:{type:Boolean}
 		open: false, //配置自动启动浏览器
+		proxy: {
+			"/api": {
+				// target: 'http://127.0.0.1:6000',
+				target: "http://www.abandon.work/api",
+				changeOrigin: true,
+				pathRewrite: {
+					"^/api": "",
+				},
+			},
+		},
 	};
 }
 
