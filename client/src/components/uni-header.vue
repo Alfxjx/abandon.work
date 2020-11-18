@@ -88,7 +88,8 @@ export default {
 @import "../styles/var.scss";
 .blog-title {
 	font-size: 1.5rem;
-	font-family: "open sans";
+	// font-family: "open sans";
+	font-family: "Pirata One", Arial;
 	color: $indigo;
 }
 .router-link {
@@ -101,5 +102,9 @@ export default {
 @font-face {
 	src: url("../assets/font/Open-Sans-2.ttf");
 	font-family: "open sans";
+}
+@font-face {
+	src: url("../assets/font/PirataOne.ttf");
+	font-family: "Pirata One";
 }
 </style>
