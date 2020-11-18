@@ -20,7 +20,7 @@ let cdn = {
 		"//cdn.bootcss.com/axios/0.19.0/axios.min.js",
 		"//cdn.bootcdn.net/ajax/libs/marked/1.1.1/marked.min.js",
 		"//cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js",
-		"//cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/highlight.min.js"
+		"//cdn.bootcdn.net/ajax/libs/highlight.js/10.3.2/highlight.min.js",
 	],
 };
 
@@ -101,10 +101,16 @@ if (process.env.NODE_ENV === "production") {
 			axios: "axios",
 			marked: "marked",
 			vuetify: "Vuetify",
-			"highlight.js": "hljs"
+			"highlight.js": "hljs",
 		};
 		// config["optimization"].minimizer.push(new TerserPlugin());
-		config["plugins"].push(new BundleAnalyzerPlugin());
+		config["plugins"].push(
+			new BundleAnalyzerPlugin({
+				analyzerMode: "static",
+				openAnalyzer: false,
+				reportFilename: `../reports/report-${new Date().getTime()}.html`,
+			})
+		);
 		config["plugins"].push(
 			new CompressionPlugin({
 				test: /\.js$|\.css$/,
