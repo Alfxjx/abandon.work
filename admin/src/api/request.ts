@@ -17,6 +17,10 @@ export const postLogin = (loginInstance: any) => {
     return axiosInstance.post('/user/login', qs.stringify(loginInstance));
 }
 
+export const postRegister = (registerInstance: any) => {
+    return axiosInstance.post('/user/register', qs.stringify(registerInstance));
+}
+
 // @note no use 
 export const postNewPicture = (picture: any) => {
     return axiosPicInstance.post('/picture', picture);
