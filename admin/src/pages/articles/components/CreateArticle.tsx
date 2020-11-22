@@ -5,7 +5,7 @@ import "highlight.js/styles/monokai-sublime.css";
 import { Row, Col, Input, Button, Select, Upload, message, Radio } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import "./CreateArticle.css";
-import { postNewBlog, getPictureList } from "../../../api/request";
+import { postNewBlog, getPictureList, getBlogById } from "../../../api/request";
 
 const { TextArea } = Input;
 // const { Option } = Select;
@@ -48,6 +48,24 @@ export default function CreateArticle() {
 			});
 			setWebPicList(arr);
 		});
+		let search = window.location.href.split('?');
+		let id;
+		if(search.length>1){
+			let pairs = search[1].split('=');
+			id = pairs[1];
+			if(id!==''){
+				getBlogById(id).then((res:any)=>{
+					const {title, tags, body, promote, picture, description} = res.data;
+					setTitleContent(title);
+					setArticleContent(body);
+					setDesContent(description);
+					setTagContent(tags);
+					setIsPromote(promote);
+					setTitlePicContent(picture);
+					// TODO BUG cannot update the state
+				})
+			}
+		}
 	}, []);
 
 	const changeTitleContent = (e: any) => {

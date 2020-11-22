@@ -1,28 +1,28 @@
-import React from 'react';
-import { Table, Tag, message, Modal } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import React from "react";
+import { Table, Tag, message, Modal } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { getBlogList, deleteOneBlog } from "../../../api/request";
 import { EditDelItem } from "./EditDelItem";
 
 const { confirm } = Modal;
-export default class ArticlesTable extends React.Component {
+export class ArticlesTable extends React.Component {
     state = {
         data: [],
-        selectedKeys: 0
-    }
+        selectedKeys: 0,
+    };
     componentDidMount() {
         getBlogList().then((res: any) => {
             this.setState({
-                data: res.data
-            })
-        })
+                data: res.data,
+            });
+        });
     }
     handleEdit() {
-        message.info('编辑成功')
+        message.info("编辑成功");
     }
     // 删除文章
     handleDelete(_id: string) {
-        console.log(`_id: ${_id}`)
+        console.log(`_id: ${_id}`);
         deleteOneBlog(_id).then((res: any) => {
             if (res) {
                 if (res.status === 200) {
@@ -30,29 +30,29 @@ export default class ArticlesTable extends React.Component {
                     // TODO uncomment
                     // window.location.reload();
                 } else {
-                    message.error('response error ' + res.status)
+                    message.error("response error " + res.status);
                 }
             } else {
-                message.error('no response')
+                message.error("no response");
             }
-        })
+        });
     }
     render() {
         const columns = [
             {
-                title: '序号',
-                dataIndex: 'key',
-                key: 'key'
+                title: "序号",
+                dataIndex: "key",
+                key: "key",
             },
             {
-                title: '标题',
-                dataIndex: 'title',
-                key: 'title'
+                title: "标题",
+                dataIndex: "title",
+                key: "title",
             },
             {
-                title: '作者',
-                dataIndex: 'author',
-                key: 'author'
+                title: "作者",
+                dataIndex: "author",
+                key: "author",
             },
             // {
             //     title: '描述',
@@ -60,39 +60,40 @@ export default class ArticlesTable extends React.Component {
             //     key: 'description',
             // },
             {
-                title: '时间',
-                dataIndex: 'date_posted',
-                key: 'date_posted'
+                title: "时间",
+                dataIndex: "date_posted",
+                key: "date_posted",
             },
             {
-                title: '推荐',
-                dataIndex: 'promote',
-                key: 'promote',
+                title: "推荐",
+                dataIndex: "promote",
+                key: "promote",
                 render: (i: string) => {
                     let color;
-                    if (i === 'yes') {
-                        color = 'gold';
-                    } else if (i === 'no') {
-                        color = 'geekblue';
+                    if (i === "yes") {
+                        color = "gold";
+                    } else if (i === "no") {
+                        color = "geekblue";
                     }
                     return (
-                        <Tag color={color} key={i}>{i}</Tag>
-                    )
-                }
-
+                        <Tag color={color} key={i}>
+                            {i}
+                        </Tag>
+                    );
+                },
             },
             {
-                title: '操作',
-                dataIndex: '',
-                key: 'actions',
-                render: () => (
+                title: "操作",
+                dataIndex: "",
+                key: "actions",
+                render: (text:any, record:any, index:number) => (
                     <EditDelItem
-                        id={this.state.selectedKeys}
+                        id={index}
                         data={this.state.data}
                         deletePost={this.handleDelete.bind(this)}
                     />
-                )
-            }
+                ),
+            },
         ];
         let tableData: any[] = [];
         this.state.data.forEach((item: any, index) => {
@@ -103,17 +104,9 @@ export default class ArticlesTable extends React.Component {
                 description: item.description,
                 //TODO item.date_posted.match(/^(\d{4}-\d{2}-\d{2})/i)[0]
                 date_posted: item.date_posted,
-                promote: item.promote ? "yes" : "no"
-            })
-        })
-        const rowSelection = {
-            onChange: (selectedRowKeys: any, selectedRows: any) => {
-                // console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
-                this.setState({
-                    selectedKeys: --selectedRowKeys
-                })
-            }
-        }
+                promote: item.promote ? "yes" : "no",
+            });
+        });
         return (
             <div>
                 <Table
@@ -121,16 +114,11 @@ export default class ArticlesTable extends React.Component {
                     dataSource={tableData}
                     bordered
                     expandable={{
-                        expandedRowRender: record => <p style={{ margin: 0 }}>{record.description}</p>,
-                        rowExpandable: record => record.description.length !== 0
+                        expandedRowRender: (record) => <p style={{ margin: 0 }}>{record.description}</p>,
+                        rowExpandable: (record) => record.description.length !== 0,
                     }}
-                    rowSelection={{
-                        type: "radio",
-                        ...rowSelection
-                    }}
-                >
-                </Table>
+                ></Table>
             </div>
-        )
+        );
     }
 }

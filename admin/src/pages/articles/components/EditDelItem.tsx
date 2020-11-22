@@ -1,33 +1,33 @@
 import { Modal, Button, Space, message } from "antd";
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-const ReachableContext = React.createContext('');
-const UnreachableContext = React.createContext('');
+const ReachableContext = React.createContext("");
+const UnreachableContext = React.createContext("");
 
 // TODO
 export const EditDelItem = (props: any) => {
     const [modal, contextHolder] = Modal.useModal();
     if (props.id < 0) {
-        message.warn('please choose one first')
-        return <></>
+        message.warn("please choose one first");
+        return <></>;
     } else {
         let _id = props.data[props.id]._id;
         const config = {
-            title: 'Caution',
+            title: "Caution",
             content: (
                 <>
-                    <ReachableContext.Consumer>
-                        {name => `确认删除_id: ${name}？`}
-                    </ReachableContext.Consumer>
+                    <ReachableContext.Consumer>{(name) => `确认删除_id: ${name}？`}</ReachableContext.Consumer>
                 </>
             ),
             onOk: () => {
-                props.deletePost(_id)
+                props.deletePost(_id);
             },
-            onCancel: ()=>{
-                message.info('已取消');
-            }
+            onCancel: () => {
+                message.info("已取消");
+            },
         };
+        let toLink = "/articles/edit?id=" + _id;
         return (
             <ReachableContext.Provider value={_id}>
                 <Space>
@@ -41,14 +41,8 @@ export const EditDelItem = (props: any) => {
                     >
                         delete
                     </Button>
-                    <Button
-                        size="small"
-                        type="default"
-                        onClick={() => {
-                            message.info('to be continued')
-                        }}
-                    >
-                        edit
+                    <Button size="small" type="default">
+                        <NavLink to={toLink}>edit</NavLink>
                     </Button>
                 </Space>
                 {/* `contextHolder` should always under the context you want to access */}
@@ -59,6 +53,4 @@ export const EditDelItem = (props: any) => {
             </ReachableContext.Provider>
         );
     }
-
-
 };

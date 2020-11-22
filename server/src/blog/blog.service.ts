@@ -20,9 +20,8 @@ export class BlogService {
       .findById(postID, { description: 0 })
       .exec();
     const cnt = await this.postModel.findByIdAndUpdate(postID, {
-      viewCount: post.viewCount + 1,
+      viewCount: post.viewCount ? post.viewCount + 1 : 1,
     });
-    post.viewCount += 1;
     return post;
   }
 
@@ -31,12 +30,12 @@ export class BlogService {
     return newPost.save();
   }
 
-  async likePost(postID){
+  async likePost(postID) {
     const oldLikes = await this.postModel.findById(postID);
     const likePost = await this.postModel.findByIdAndUpdate(
       postID,
-      {likeCount: oldLikes.likeCount + 1},
-      {new: true}
+      { likeCount: oldLikes.likeCount + 1 },
+      { new: true },
     );
     return likePost;
   }
