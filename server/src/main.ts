@@ -26,14 +26,14 @@ async function bootstrap() {
       extensions: ['jpg', 'jpeg', 'png', 'gif'],
     }),
   );
-  const options = new DocumentBuilder()
-    .setTitle('Blog example')
-    .setDescription('The Blog API description')
-    .setVersion('1.0')
-    .addTag('dev')
-    .build();
-  const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+  // const options = new DocumentBuilder()
+  //   .setTitle('Blog example')
+  //   .setDescription('The Blog API description')
+  //   .setVersion('1.0')
+  //   .addTag('dev')
+  //   .build();
+  // const document = SwaggerModule.createDocument(app, options);
+  // SwaggerModule.setup('api', app, document);
   // TODO port???
   await app.listen(6000);
 }
