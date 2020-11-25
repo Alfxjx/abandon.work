@@ -5,18 +5,18 @@ module.exports = function (app) {
     createProxyMiddleware(
       "/api",
       // dev
-      {
-        target: "http://localhost:6001",
-        changeOrigin: true,
-        pathRewrite: {
-          "/api": "",
-        },
-      },
+      // {
+      //   target: "http://localhost:6001",
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     "/api": "",
+      //   },
+      // },
       //   prod
-    //   {
-    //     target: "http://www.abandon.work",
-    //     changeOrigin: true,
-    //   }
+      {
+        target: "http://www.abandon.work",
+        changeOrigin: true,
+      }
     )
   );
 };

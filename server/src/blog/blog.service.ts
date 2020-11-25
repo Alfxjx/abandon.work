@@ -16,8 +16,7 @@ export class BlogService {
 
   async getPost(postID): Promise<Post> {
     const post = await this.postModel
-      // 不显示description了
-      .findById(postID, { description: 0 })
+      .findById(postID)
       .exec();
     const cnt = await this.postModel.findByIdAndUpdate(postID, {
       viewCount: post.viewCount ? post.viewCount + 1 : 1,
