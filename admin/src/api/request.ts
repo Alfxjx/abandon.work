@@ -31,7 +31,11 @@ export const getPictureList = ()=>{
 }
 
 export const postNewBlog = (blog: any) => {
-    return axiosLoginInstance.post('/blog', qs.stringify(blog))
+    return axiosLoginInstance.post('/blog', qs.stringify(blog));
+}
+
+export const patchBlog = (id:string, blog:any) => {
+    return axiosLoginInstance.post(`/blog/edit/${id}`, qs.stringify(blog));
 }
 
 export const deleteOneBlog = (id: string) => {

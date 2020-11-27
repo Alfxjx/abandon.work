@@ -65,7 +65,7 @@ export class BlogController {
     })
   }
 
-  @Patch('/edit')
+  @Patch('/edit/:postID')
   async editPost(
     @Res() res,
     @Param('postID', new ValidateObjectId()) postID,
