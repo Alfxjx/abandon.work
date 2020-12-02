@@ -10,6 +10,7 @@ import { PictureModule } from './picture/picture.module';
 // import { join } from 'path';
 import { JuheModule } from './juhe/juhe.module';
 import { OptionMiddleware } from "./shared/middlewares/option.middleware";
+import { StatisticModule } from './statistic/statistic.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { OptionMiddleware } from "./shared/middlewares/option.middleware";
     UserModule,
     PictureModule,
     JuheModule,
+    StatisticModule,
   ],
   controllers: [AppController],
   providers: [AppService],
