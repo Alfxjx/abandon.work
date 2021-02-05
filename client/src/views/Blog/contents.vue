@@ -70,6 +70,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  font-family: Menlo, "Meslo LG", monospace;
   .content {
     display: flex;
     flex-direction: column;
@@ -100,6 +101,16 @@ export default {
       }
     }
   }
+}
+p{
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  margin: 0.2rem 0;
+}
+li{
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  margin: 0.2rem 0;
 }
 p > img {
   width: 50%;

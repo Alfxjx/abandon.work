@@ -47,6 +47,7 @@ export default {
 .blog-list-wrapper {
   flex: 1;
   padding-top: 50px;
+  font-family: Menlo, "Meslo LG", monospace;
   .blog-list {
     display: flex;
     flex-direction: column;
