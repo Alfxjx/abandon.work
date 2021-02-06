@@ -89,7 +89,7 @@ export default {
 .blog-title {
 	font-size: 1.5rem;
 	// font-family: "open sans";
-	font-family: "Pirata One", Arial;
+	font-family: "CyberPunk", "Pirata One", Arial;
 	color: $indigo;
 }
 .router-link {
@@ -106,5 +106,9 @@ export default {
 @font-face {
 	src: url("../assets/font/PirataOne.ttf");
 	font-family: "Pirata One";
+}
+@font-face {
+	src: url("../assets/font/Cyberpunk.ttf");
+	font-family: "CyberPunk";
 }
 </style>

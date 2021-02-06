@@ -16,30 +16,37 @@ import {
 import { BlogService } from './blog.service';
 import { CreatePostDTO } from './dto/create-post.dto';
 import { ValidateObjectId } from '../shared/pipes/validate-object-id.pipes';
+import { ICount } from './types/blog.types';
 
 @Controller('blog')
 export class BlogController {
-  constructor(private blogService: BlogService) { }
+  constructor(private blogService: BlogService) {}
 
   private readonly logger = new Logger();
 
   @Get('')
   async getPosts(@Res() res, @Query() query) {
-    const posts = await this.blogService.getPosts(query);
+    const {flag, ...rest} = query;
+    this.logger.log(`rest query: ${JSON.stringify(rest)}`);
+    const posts = await this.blogService.getPosts(rest, flag);
     if (!posts) throw new NotFoundException('Posts find failed!');
     return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
-      data: posts
+      data: posts,
     });
   }
 
   @Get('/:postID')
-  async getPost(@Res() res, @Param('postID', new ValidateObjectId()) postID) {
-    const post = await this.blogService.getPost(postID);
+  async getPost(
+    @Res() res,
+    @Param('postID', new ValidateObjectId()) postID,
+    @Query() query: ICount,
+  ) {
+    const post = await this.blogService.getPost(postID, query.flag);
     if (!post) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
-      data: post
+      data: post,
     });
   }
 
@@ -55,17 +62,18 @@ export class BlogController {
   }
 
   @Post('/like/:postID')
-  async likePost(@Res() res, @Param('postID', new ValidateObjectId()) postID){
+  async likePost(@Res() res, @Param('postID', new ValidateObjectId()) postID) {
     const likePost = await this.blogService.likePost(postID);
-    if(!likePost) throw new NotFoundException('点赞失败，西巴，是不是哪里出了问题');
+    if (!likePost)
+      throw new NotFoundException('点赞失败，西巴，是不是哪里出了问题');
     return res.status(HttpStatus.OK).json({
       status: HttpStatus.OK,
-      message:'点赞成功！',
-      data: likePost
-    })
+      message: '点赞成功！',
+      data: likePost,
+    });
   }
 
-  @Patch('/edit')
+  @Patch('/edit/:postID')
   async editPost(
     @Res() res,
     @Param('postID', new ValidateObjectId()) postID,
@@ -86,7 +94,7 @@ export class BlogController {
     // TODO 改回Query
     @Param('postID', new ValidateObjectId()) postID,
   ) {
-    this.logger.log(typeof postID)
+    this.logger.log(typeof postID);
     const deletedPost = await this.blogService.deletePost(postID);
     if (!deletedPost) throw new NotFoundException('Post does not exist!');
     return res.status(HttpStatus.OK).json({

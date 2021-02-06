@@ -1,21 +1,21 @@
 <template>
-  <v-card class="article-card" elevation="2">
+  <div class="article-card">
     <div class="item-bot" @click="goDetails(item._id)">
-      <div class="item-img" v-if="item.picture">
-        <v-img :src="item.picture" alt="title" height="200px" width="300px" />
-      </div>
+      <!-- <div class="item-img" v-if="item.picture">
+        <img :src="item.picture" alt="title" height="200px" width="300px" />
+      </div> -->
       <div class="item-title">
-        <v-card-title>{{ item.title }}</v-card-title>
-        <v-card-text>{{ item.description }}</v-card-text>
+        <div>{{ item.title }}</div>
+        <!-- <div>{{ item.description }}</div> -->
       </div>
     </div>
-    <div class="item-info">
+    <!-- <div class="item-info">
       <span>{{ item.author }}</span>
       <span>{{ item.date_posted | dateFilter }}</span>
       <span>{{ item.tags }}</span>
       <span>{{ item.promote ? "推荐" : "一般" }}</span>
-    </div>
-  </v-card>
+    </div> -->
+  </div>
 </template>
 
 <script>
@@ -40,6 +40,7 @@ export default {
   width: 45rem;
   display: flex;
   flex-direction: column;
+  font-family: Menlo, "Meslo LG", monospace;
   .item-info {
     display: flex;
     flex-direction: row;
