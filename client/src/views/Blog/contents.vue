@@ -70,7 +70,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
-  font-family: Menlo, "Meslo LG", monospace;
+  font-family: ColaCare, Menlo, "Meslo LG", monospace;
   .content {
     display: flex;
     flex-direction: column;
@@ -103,12 +103,14 @@ export default {
   }
 }
 p{
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: bold;
   line-height: 1.5rem;
   margin: 0.2rem 0;
 }
 li{
-  font-size: 0.875rem;
+  font-size: 1rem;
+  font-weight: lighter;
   line-height: 1.5rem;
   margin: 0.2rem 0;
 }
@@ -149,5 +151,9 @@ blockquote {
   @media screen and (max-width: 640px) {
     font-size: 0.75rem;
   }
+}
+@font-face {
+    src: url("../../assets/font/ColaCare.TTF");
+    font-family: "ColaCare";
 }
 </style>

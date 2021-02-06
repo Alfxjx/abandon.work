@@ -40,7 +40,8 @@ export default {
   width: 45rem;
   display: flex;
   flex-direction: column;
-  font-family: Menlo, "Meslo LG", monospace;
+  font-family: ColaCare, Menlo, "Meslo LG", monospace;
+  font-size: 1.25rem;
   .item-info {
     display: flex;
     flex-direction: row;
@@ -58,6 +59,11 @@ export default {
       flex: 1;
     }
   }
+}
+
+@font-face {
+    src: url("../../../assets/font/ColaCare.TTF");
+    font-family: "ColaCare";
 }
 
 @media (max-width: 960px) {
