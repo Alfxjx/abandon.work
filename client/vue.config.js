@@ -13,6 +13,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 let cdn = {
 	js: [
 		// TODO 动态版本号
+		"//cdn.bootcdn.net/ajax/libs/core-js/3.8.3/minified.min.js",
 		"//cdn.bootcss.com/vue/2.6.10/vue.runtime.min.js",
 		"//cdn.bootcss.com/vue-router/3.1.3/vue-router.min.js",
 		"//cdn.bootcss.com/vuex/3.1.2/vuex.min.js",
@@ -99,6 +100,7 @@ if (process.env.NODE_ENV === "production") {
 			axios: "axios",
 			marked: "marked",
 			"highlight.js": "hljs",
+			"core-js": "core-js",
 		};
 		// config["optimization"].minimizer.push(new TerserPlugin());
 		config["plugins"].push(
